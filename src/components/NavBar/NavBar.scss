@@ -1,12 +1,15 @@
 .navbar {
-	background: white;
+  background: white;
+}
+
+.navbar-light .navbar-toggler {
+  background: white;
 }
 
 .navbar-brand {
-	padding-left: 1.6em;
+  padding-left: 1.6em;
 }
 
 a.nav-link {
-	margin-left: 2.3rem;
+  margin-left: 2.3rem;
 }
-

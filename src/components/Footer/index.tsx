@@ -1,10 +1,10 @@
-import React from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
 
-import './Footer.scss'
+import "./Footer.scss";
 
 const Footer = () => {
- const year = new Date().getFullYear()
+  const year = new Date().getFullYear();
 
   return (
     <footer>
@@ -16,7 +16,7 @@ const Footer = () => {
         </Row>
       </Container>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
