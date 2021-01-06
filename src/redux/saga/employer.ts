@@ -10,11 +10,16 @@ import {
   loginEmployerSuccess,
   loginEmployerFail,
 } from '../../redux/actions/employer'
-import { registerJobPostSuccess, registerJobPostFail } from '../actions/jobpost'
+import {
+  registerJobPostSuccess,
+  registerJobPostFail,
+  deleteJobPostFail,
+  deleteJobPostSuccess,
+} from '../actions/jobpost'
 
 const credential = (state: AppState) => state.employer.credential
 const jobPostFormData = (state: AppState) => state.employer.jobPost
-
+const id = (state: AppState) => state.employer.jobPostIdToDelete
 function* registerEmployerSaga() {
   try {
     const credentialData = yield select(credential)
@@ -30,7 +35,7 @@ function* registerEmployerSaga() {
 function* loginEmployerSaga() {
   try {
     const credentialData = yield select(credential)
-    const res = yield axios.post('/employer/login/local', {
+    const res = yield axios.post('/login/local', {
       email: credentialData.email,
       password: credentialData.password,
     })
@@ -52,10 +57,20 @@ function* creatingJobPostSaga() {
     yield registerJobPostFail(e)
   }
 }
+function* deletingJobPostSaga() {
+  try {
+    const jobPostId = yield select(id)
+    yield axios.delete(`/employer/jobs/${jobPostId}`)
+    deleteJobPostSuccess()
+  } catch (e) {
+    deleteJobPostFail(e)
+  }
+}
 const sagaWatcher = [
   takeLatest('REGISTER_EMPLOYER_REQUEST', registerEmployerSaga),
   takeLatest('LOGIN_EMPLOYER_REQUEST', loginEmployerSaga),
   takeLatest('JOB_POST_REQUEST', creatingJobPostSaga),
+  takeLatest('JOB_DELETE_REQUEST', deletingJobPostSaga),
 ]
 
 export default sagaWatcher

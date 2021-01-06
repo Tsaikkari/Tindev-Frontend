@@ -29,7 +29,7 @@ function* registerJobseekerSaga() {
 function* loginJobseekerSaga() {
   try {
     const credentialData = yield select(credential)
-    const res = yield axios.post('/jobseeker/login/local', {
+    const res = yield axios.post('/login/local', {
       email: credentialData.email,
       password: credentialData.password,
     })

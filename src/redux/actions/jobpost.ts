@@ -3,6 +3,9 @@ import {
   JobSuccessActionType,
   JobFailActionType,
   JobPost,
+  DeletingRequestActionType,
+  DeletingSuccessActionType,
+  DeletingFailActionType,
 } from '../types'
 export const creatingJobPostRequest = (
   jobForm: JobPost
@@ -22,6 +25,24 @@ export const registerJobPostFail = (error: {
 }): JobFailActionType => {
   return {
     type: 'JOB_POST_FAIL',
+    payload: error,
+  }
+}
+
+export const deleteJobPostRequest = (id: string): DeletingRequestActionType => {
+  return {
+    type: 'JOB_DELETE_REQUEST',
+    payload: id,
+  }
+}
+export const deleteJobPostSuccess = (): DeletingSuccessActionType => {
+  return {
+    type: 'JOB_DELETE_SUCCESS',
+  }
+}
+export const deleteJobPostFail = (error: any): DeletingFailActionType => {
+  return {
+    type: 'JOB_DELETE_FAIL',
     payload: error,
   }
 }

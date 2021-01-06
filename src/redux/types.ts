@@ -18,6 +18,9 @@ export const LOGOUT_JOBSEEKER = 'LOGOUT_JOBSEEKER'
 export const JOB_POST_REQUEST = 'JOB_POST_REQUEST'
 export const JOB_POST_SUCCESS = 'JOB_POST_SUCCESS'
 export const JOB_POST_FAIL = 'JOB_POST_FAIL'
+export const JOB_DELETE_REQUEST = 'JOB_DELETE_REQUEST'
+export const JOB_DELETE_SUCCESS = 'JOB_DELETE_SUCCESS'
+export const JOB_DELETE_FAIL = 'JOB_DELETE_FAIL'
 export const CREATE_SKILL_REQUEST = 'CREATE_SKILLS_REQUEST'
 export const CREATE_SKILL_SUCCESS = 'CREATE_SKILL_SUCCESS'
 export const CREATE_SKILL_FAIL = 'CREATE_SKILL_FAIL'
@@ -38,6 +41,9 @@ export type EmployerActions =
   | CreatingJobActionType
   | JobFailActionType
   | JobSuccessActionType
+  | DeletingRequestActionType
+  | DeletingSuccessActionType
+  | DeletingFailActionType
 
 export type RegisterEmployerRequestAction = {
   type: typeof REGISTER_EMPLOYER_REQUEST
@@ -269,6 +275,7 @@ export type CredentialStateEmployer = {
     seniority: string
     skills: any[]
   }
+  jobPostIdToDelete: string
 }
 
 export type CredentialStateJobseeker = {
@@ -292,6 +299,8 @@ export type SkillState = {
   loading: boolean
   error: any
 }
+
+export type IdToDelete = string
 
 export type AppState = {
   employer: CredentialStateEmployer
@@ -339,6 +348,20 @@ export type JobSuccessActionType = {
 }
 export type JobFailActionType = {
   type: typeof JOB_POST_FAIL
+  payload: {
+    error: any
+  }
+}
+
+export type DeletingRequestActionType = {
+  type: typeof JOB_DELETE_REQUEST
+  payload: string
+}
+export type DeletingSuccessActionType = {
+  type: typeof JOB_DELETE_SUCCESS
+}
+export type DeletingFailActionType = {
+  type: typeof JOB_DELETE_FAIL
   payload: {
     error: any
   }

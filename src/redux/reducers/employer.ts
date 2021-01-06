@@ -11,6 +11,9 @@ import {
   JOB_POST_SUCCESS,
   JOB_POST_REQUEST,
   JOB_POST_FAIL,
+  JOB_DELETE_REQUEST,
+  JOB_DELETE_SUCCESS,
+  JOB_DELETE_FAIL,
 } from '../types'
 
 const initialState = {
@@ -24,6 +27,7 @@ const initialState = {
     seniority: '',
     skills: [],
   },
+  jobPostIdToDelete: '',
 }
 
 const employer = (state = initialState, action: EmployerActions) => {
@@ -48,6 +52,12 @@ const employer = (state = initialState, action: EmployerActions) => {
       return { ...state, loading: false, jobPost: {} }
     case JOB_POST_FAIL:
       return { ...state, loading: false, error: action.payload }
+    case JOB_DELETE_REQUEST:
+      return { ...state, loading: true, jobPostIdToDelete: action.payload }
+    case JOB_DELETE_SUCCESS:
+      return { ...state, loading: false }
+    case JOB_DELETE_FAIL:
+      return { ...state, error: action.payload }
     default:
       return state
   }
