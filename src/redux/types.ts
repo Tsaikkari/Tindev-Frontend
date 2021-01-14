@@ -1,3 +1,5 @@
+import { DayValue } from 'react-modern-calendar-datepicker'
+
 export const REGISTER_EMPLOYER_REQUEST = 'REGISTER_EMPLOYER_REQUEST'
 export const REGISTER_EMPLOYER_SUCCESS = 'REGISTER_EMPLOYER_SUCCESS'
 export const REGISTER_EMPLOYER_FAIL = 'REGISTER_EMPLOYER_FAIL'
@@ -14,12 +16,12 @@ export const LOGIN_USER_REQUEST = 'LOGIN_USER_REQUEST'
 export const LOGIN_USER_SUCCESS = 'LOGIN_USER_SUCCESS'
 export const LOGIN_USER_FAIL = 'LOGIN_USER_FAIL'
 export const LOGOUT_USER = 'LOGOUT_USER'
-export const JOB_POST_REQUEST = 'JOB_POST_REQUEST'
-export const JOB_POST_SUCCESS = 'JOB_POST_SUCCESS'
-export const JOB_POST_FAIL = 'JOB_POST_FAIL'
+export const CREATE_JOB_POST_REQUEST = 'CREATE_JOB_POST_REQUEST'
+export const CREATE_JOB_POST_SUCCESS = 'CREATE_JOB_POST_SUCCESS'
+export const CREATE_JOB_POST_FAIL = 'CREATE_JOB_POST_FAIL'
 export const UPDATE_JOBPOST_REQUEST = 'UPDATE_JOBPOST_REQUEST'
 export const UPDATE_JOBPOST_SUCCESS = 'UPDATE_JOBPOST_SUCCESS'
-export const UPDATE_JOBPOST_FAIL = 'UPDATE_JOBPOST_FAIL'
+export const UPDATE_CREATE_JOBPOST_FAIL = 'UPDATE_JOBPOST_FAIL'
 export const JOB_DELETE_REQUEST = 'JOB_DELETE_REQUEST'
 export const JOB_DELETE_SUCCESS = 'JOB_DELETE_SUCCESS'
 export const JOB_DELETE_FAIL = 'JOB_DELETE_FAIL'
@@ -305,22 +307,22 @@ export type JobPost = {
   title: string
   jobDescription: string
   seniority: string
-  skills: any[]
-  startingDate: string
+  requiredSkills: any[]
+  startingDate: DayValue
 }
 
 export type CreatingJobActionType = {
-  type: typeof JOB_POST_REQUEST
+  type: typeof CREATE_JOB_POST_REQUEST
   payload: JobPost
 }
 
 export type JobSuccessActionType = {
-  type: typeof JOB_POST_SUCCESS
+  type: typeof CREATE_JOB_POST_SUCCESS
   payload: JobPost
 }
 
 export type JobFailActionType = {
-  type: typeof JOB_POST_FAIL
+  type: typeof CREATE_JOB_POST_FAIL
   payload: {
     error: any
   }
@@ -355,6 +357,7 @@ export type Credential = {
   skillLevel?: string
   duration?: string
   startingDate?: string
+  requiredSkills?: any[]
   created?: Date
   education?: {
     institute?: string

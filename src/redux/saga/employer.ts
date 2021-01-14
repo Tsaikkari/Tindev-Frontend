@@ -72,7 +72,7 @@ function* deletingJobPostSaga(action: DeletingRequestActionType) {
 const sagaWatcher = [
   takeLatest('REGISTER_EMPLOYER_REQUEST', registerEmployerSaga),
   takeLatest('UPDATE_EMPLOYER_REQUEST', updateEmployerSaga),
-  takeLatest('JOB_POST_REQUEST', creatingJobPostSaga),
+  takeLatest('CREATE_JOB_POST_REQUEST', creatingJobPostSaga),
   takeLatest('JOB_DELETE_REQUEST', deletingJobPostSaga),
 ]
 

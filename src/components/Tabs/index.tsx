@@ -1,6 +1,5 @@
 import React from 'react'
 import { Tab, Row, Col, Nav } from 'react-bootstrap'
-//import LogOut from '../LogOut'
 
 //import LogOut from '../LogOut'
 import Navbar from '../Navbar-logout'

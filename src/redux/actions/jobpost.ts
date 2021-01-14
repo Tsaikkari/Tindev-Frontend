@@ -6,9 +6,9 @@ import {
   DeletingRequestActionType,
   DeletingSuccessActionType,
   DeletingFailActionType,
-  JOB_POST_REQUEST,
-  JOB_POST_SUCCESS,
-  JOB_POST_FAIL,
+  CREATE_JOB_POST_REQUEST,
+  CREATE_JOB_POST_SUCCESS,
+  CREATE_JOB_POST_FAIL,
   JOB_DELETE_REQUEST,
   JOB_DELETE_SUCCESS,
   JOB_DELETE_FAIL,
@@ -17,7 +17,7 @@ export const creatingJobPostRequest = (
   jobForm: JobPost
 ): CreatingJobActionType => {
   return {
-    type: JOB_POST_REQUEST,
+    type: CREATE_JOB_POST_REQUEST,
     payload: jobForm,
   }
 }
@@ -25,7 +25,7 @@ export const registerJobPostSuccess = (
   jobForm: JobPost
 ): JobSuccessActionType => {
   return {
-    type: JOB_POST_SUCCESS,
+    type: CREATE_JOB_POST_SUCCESS,
     payload: jobForm,
   }
 }
@@ -33,7 +33,7 @@ export const registerJobPostFail = (error: {
   error: any
 }): JobFailActionType => {
   return {
-    type: JOB_POST_FAIL,
+    type: CREATE_JOB_POST_FAIL,
     payload: error,
   }
 }
