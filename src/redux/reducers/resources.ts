@@ -28,6 +28,7 @@ export const resources = (
         skills: [],
       }
     case GET_SKILLS_SUCCESS:
+      console.log('action payload in reducer', action.payload)
       return {
         ...state,
         loading: false,

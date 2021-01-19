@@ -6,13 +6,14 @@ import 'react-modern-calendar-datepicker/lib/DatePicker.css'
 
 import Message from '../Message'
 import Loader from '../Loader'
+import DropDown from '../DropDown'
 import { creatingJobPostRequest } from '../../redux/actions/resources'
 import { AppState } from '../../redux/types'
 
-type HeaderProps = {
+type JobPostFormProps = {
   header: string
 }
-const JobPostForm = ({ header }: HeaderProps) => {
+const JobPostForm = ({ header }: JobPostFormProps) => {
   const [startingAt, setStartingAt] = useState<DayValue>(null)
   const [formData, setFormData] = useState({
     title: '',
@@ -117,14 +118,15 @@ const JobPostForm = ({ header }: HeaderProps) => {
                 Required Skills
               </Form.Label>
               <Col sm="8">
-                <Form.Control
+                <DropDown />
+                {/* <Form.Control
                   className="text-field"
                   type="text"
                   name="requiredSkills"
                   placeholder="Typescript"
                   value={formData.requiredSkills}
                   onChange={handleChange}
-                />
+                /> */}
               </Col>
             </Form.Group>
             <Form.Group

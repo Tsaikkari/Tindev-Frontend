@@ -44,6 +44,8 @@ export const initState: AppState = {
       seniority: '',
       skills: [],
       startingDate: '',
+      loading: false,
+      error: null,
     },
   },
   skill: {

@@ -17,6 +17,7 @@ const jobPostFormData = (state: AppState) => state.resources.jobPost
 function* getSkillsSaga() {
   try {
     const res = yield axios.get('/skills')
+    console.log('res.data', res.data)
     yield put(getSkillsSuccess(res.data))
   } catch (error) {
     yield put(getSkillsFail(error))
