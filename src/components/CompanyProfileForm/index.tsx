@@ -7,6 +7,7 @@ import 'react-modern-calendar-datepicker/lib/DatePicker.css'
 import Message from '../Message'
 import Loader from '../Loader'
 import { updateEmployerRequest } from '../../redux/actions/employer'
+import { getSkillsRequest } from '../../redux/actions/resources'
 import { AppState } from '../../redux/types'
 
 const CompanyProfileForm = () => {
@@ -20,6 +21,10 @@ const CompanyProfileForm = () => {
 
   const user = useSelector((state: AppState) => state.user)
   const { loading, error } = user
+
+  const handleClick = () => {
+    dispatch(getSkillsRequest())
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target
@@ -45,7 +50,9 @@ const CompanyProfileForm = () => {
 
   return (
     <Container fluid="md">
-      <Link to="/company/jobpost/">+ Job Post</Link>
+      <Link onClick={handleClick} to="/company/jobpost/">
+        + Job Post
+      </Link>
       {error && <Message variant="danger">{error}</Message>}
       {loading && <Loader />}
       <Row>

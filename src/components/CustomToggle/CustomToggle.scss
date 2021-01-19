@@ -1,12 +1,13 @@
 @import '../../scss/config';
 
-button.toggle-button {
-  background: $dark-purple;
-  border: 0;
-}
-
-button.toggle-button:hover {
-  color: $purple-color;
+.toggle-button.btn.btn-primary {
   background: $white;
   border: $purple-color 1px solid;
+  color: $purple-color;
+}
+
+.toggle-button.btn.btn-primary:hover {
+  background: $dark-purple;
+  border: 0;
+  color: $white;
 }
