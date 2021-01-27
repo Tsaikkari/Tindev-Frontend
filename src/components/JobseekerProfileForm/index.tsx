@@ -1,8 +1,8 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+//import { useDispatch } from 'react-redux'
 import { Form, Row, Col } from 'react-bootstrap'
 
-import { updateJobseekerRequest } from '../../redux/actions/jobseeker'
+//import { updateJobseekerRequest } from '../../redux/actions/jobseeker'
 import HalfCircle from '../../components/HalfCircle'
 import CustomButton from '../../components/CustomButton'
 
@@ -33,35 +33,35 @@ const JobseekerProfileForm = () => {
   }
 
   // Destructuring from state
-  const {
-    firstName,
-    lastName,
-    phone,
-    seniority,
-    degreeName,
-    institutionName,
-    skills,
-    skillLevel,
-    duration,
-  } = state
+  // const {
+  //   firstName,
+  //   lastName,
+  //   phone,
+  //   seniority,
+  //   degreeName,
+  //   institutionName,
+  //   skills,
+  //   skillLevel,
+  //   duration,
+  // } = state
 
-  const dispatch = useDispatch()
+  // const dispatch = useDispatch()
 
   // Handler for form submit
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const userData = {
-      firstName,
-      lastName,
-      phone,
-      seniority,
-      degreeName,
-      institutionName,
-      skills,
-      skillLevel,
-      duration,
-    }
-    dispatch(updateJobseekerRequest(userData))
+    // const userData = {
+    //   firstName,
+    //   lastName,
+    //   phone,
+    //   seniority,
+    //   degreeName,
+    //   institutionName,
+    //   skills,
+    //   skillLevel,
+    //   duration,
+    // }
+    // dispatch(updateJobseekerRequest(userData))
   }
 
   return (
