@@ -4,7 +4,7 @@ import axios from 'axios'
 import {
   AppState,
   RegisterJobseekerRequestAction,
-  UpdateEmployerRequestAction,
+  updateJobseekerRequestAction,
 } from '../types'
 import {
   updateJobseekerFail,
@@ -48,7 +48,7 @@ function* registerJobseekerSaga(action: RegisterJobseekerRequestAction) {
   }
 }
 
-function* updateJobseekerSaga(action: UpdateEmployerRequestAction) {
+function* updateJobseekerSaga(action: updateJobseekerRequestAction) {
   const jobseekerInfo = action.payload
   try {
     const response = yield axios.patch('/jobSeeker', jobseekerInfo)
