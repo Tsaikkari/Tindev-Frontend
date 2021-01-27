@@ -9,7 +9,7 @@ import {
   JobseekerUpdate,
 } from '../types'
 
-export const updateJobseekerRequest = (jobseeker: JobseekerUpdate) => {
+export const updateJobseekerRequest = (jobseeker: Partial<JobseekerUpdate>) => {
   return {
     type: UPDATE_JOBSEEKER_REQUEST,
     payload: jobseeker,
