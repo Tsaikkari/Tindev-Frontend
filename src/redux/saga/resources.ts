@@ -1,7 +1,11 @@
-import { put, select, takeLatest } from 'redux-saga/effects'
+import { put, takeLatest } from 'redux-saga/effects'
 import axios from 'axios'
 
-import { AppState, DeletingRequestActionType } from '../types'
+import {
+  CreateSkillRequestAction,
+  CreatingJobPostRequestAction,
+  DeletingRequestActionType,
+} from '../types'
 import { getSkillsSuccess, getSkillsFail } from '../actions/resources'
 import { createSkillSuccess, createSkillFail } from '../actions/skill'
 import {
@@ -10,9 +14,6 @@ import {
   deleteJobPostFail,
   deleteJobPostSuccess,
 } from '../actions/resources'
-
-const skillInfo = (state: AppState) => state.skill
-const jobPostFormData = (state: AppState) => state.resources.jobPost
 
 function* getSkillsSaga() {
   try {
@@ -23,9 +24,9 @@ function* getSkillsSaga() {
   }
 }
 
-function* createSkillSaga() {
+function* createSkillSaga(action: CreateSkillRequestAction) {
+  const skill = action.payload
   try {
-    const skill = yield select(skillInfo)
     const res = yield axios.post('/skills', skill)
     yield put(createSkillSuccess(res.data))
   } catch (error) {
@@ -33,9 +34,9 @@ function* createSkillSaga() {
   }
 }
 
-function* creatingJobPostSaga() {
+function* creatingJobPostSaga(action: CreatingJobPostRequestAction) {
+  const job = action.payload
   try {
-    const job = yield select(jobPostFormData)
     const res = yield axios.post('/employer/jobs', job)
     yield put(registerJobPostSuccess(res))
   } catch (e) {
@@ -43,6 +44,7 @@ function* creatingJobPostSaga() {
   }
 }
 
+// Deletes on the backend only
 function* deletingJobPostSaga(action: DeletingRequestActionType) {
   try {
     const jobPostId = yield action.payload
