@@ -44,7 +44,7 @@ function* creatingJobPostSaga(action: CreatingJobPostRequestAction) {
   }
 }
 
-// Deletes on the backend only
+// Deletes on the backend immediately, on the frontend after page refresh
 function* deletingJobPostSaga(action: DeletingRequestActionType) {
   try {
     const jobPostId = yield action.payload
