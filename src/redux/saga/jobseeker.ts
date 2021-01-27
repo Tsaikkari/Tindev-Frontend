@@ -53,7 +53,6 @@ function* updateJobseekerSaga(action: updateJobseekerRequestAction) {
   try {
     const response = yield axios.patch('/jobSeeker', jobseekerInfo)
     yield put(updateJobseekerSuccess(response.data.payload))
-    console.log('responsedatapayload', response.data.payload)
   } catch (error) {
     yield put(updateJobseekerFail(error.message))
   }
