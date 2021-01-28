@@ -114,10 +114,8 @@ export type EmployerActions =
 export type RegisterEmployerRequestAction = {
   type: typeof REGISTER_EMPLOYER_REQUEST
   payload: {
-    credential: {
-      email: string
-      password: string
-    }
+    email: string
+    password: string
     history: any
   }
 }
@@ -203,10 +201,8 @@ export type JobseekerActions =
 export type RegisterJobseekerRequestAction = {
   type: typeof REGISTER_JOBSEEKER_REQUEST
   payload: {
-    credential: {
-      email: string
-      password: string
-    }
+    email: string
+    password: string
     history: any
   }
 }

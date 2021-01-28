@@ -1,9 +1,8 @@
-import { put, takeLatest, select } from 'redux-saga/effects'
+import { put, takeLatest } from 'redux-saga/effects'
 import axios from 'axios'
 
 import {
   RegisterEmployerRequestAction,
-  AppState,
   UpdateEmployerRequestAction,
 } from './../types'
 import {
@@ -13,14 +12,15 @@ import {
   updateEmployerFail,
 } from '../../redux/actions/employer'
 
-const credential = (state: AppState) => state.employer.credential
-
 function* registerEmployerSaga(action: RegisterEmployerRequestAction) {
+  const email = action.payload.email
+  const password = action.payload.password
+
   try {
-    const credentialData = yield select(credential)
     const res = yield axios.post('/employer', {
-      credential: credentialData,
+      credential: { email, password },
     })
+    console.log('res', res)
     yield put(registerEmployerSuccess(res.data))
     const history = action.payload.history
     if (res.data.status === 201) {
@@ -30,24 +30,6 @@ function* registerEmployerSaga(action: RegisterEmployerRequestAction) {
     yield put(registerEmployerFail())
   }
 }
-
-// Doesn't work
-// function* registerEmployerSaga(action: RegisterEmployerRequestAction) {
-//   const email = action.payload.credential.email
-//   const password = action.payload.credential.password
-
-//   try {
-//     const res = yield axios.post('/employer', { email, password })
-//     console.log('res', res)
-//     yield put(registerEmployerSuccess(res.data))
-//     const history = action.payload.history
-//     if (res.data.status === 201) {
-//       yield history.push('/login')
-//     }
-//   } catch (error) {
-//     yield put(registerEmployerFail())
-//   }
-// }
 
 function* updateEmployerSaga(action: UpdateEmployerRequestAction) {
   const employerInfo = action.payload
