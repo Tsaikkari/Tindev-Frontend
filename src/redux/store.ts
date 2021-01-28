@@ -7,7 +7,8 @@ import { AppState } from './types'
 
 export const initState: AppState = {
   user: {
-    credential: { email: '', password: '' },
+    email: '',
+    password: '',
     userInfo: {
       role: '',
       companyName: '',
@@ -22,7 +23,8 @@ export const initState: AppState = {
     error: null,
   },
   employer: {
-    credential: { email: '', password: '' },
+    email: '',
+    password: '',
     info: {
       companyName: '',
       companyInfo: '',
@@ -34,7 +36,8 @@ export const initState: AppState = {
     error: null,
   },
   jobseeker: {
-    credential: { email: '', password: '' },
+    email: '',
+    password: '',
     role: '',
     loading: false,
     error: null,

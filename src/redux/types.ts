@@ -431,10 +431,8 @@ export type CredentialState = {
 }
 
 export type CredentialStateUser = {
-  credential: {
-    email: string
-    password: string
-  }
+  email: string
+  password: string
   userInfo: {
     companyName: string
     companyInfo: string
@@ -450,10 +448,8 @@ export type CredentialStateUser = {
 }
 
 export type CredentialStateEmployer = {
-  credential: {
-    email: string
-    password: string
-  }
+  email: string
+  password: string
   info: {
     companyName: string
     companyInfo: string
@@ -466,10 +462,8 @@ export type CredentialStateEmployer = {
 }
 
 export type CredentialStateJobseeker = {
-  credential: {
-    email: string
-    password: string
-  }
+  email: string
+  password: string
   role: string
   loading: Boolean
   error: any
