@@ -8,6 +8,7 @@ import App from './App'
 import makeStore from './redux/store'
 
 axios.defaults.baseURL = 'https://tindev-dev-deploy.herokuapp.com'
+
 const store = makeStore()
 
 ReactDOM.render(

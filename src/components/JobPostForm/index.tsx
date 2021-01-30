@@ -48,7 +48,7 @@ const JobPostForm = ({ header }: JobPostFormProps) => {
 
   // TODO: date format
 
-  const user = useSelector((state: AppState) => state.user.userInfo)
+  const user = useSelector((state: AppState) => state.user)
   const { loading, error } = user
 
   const dispatch = useDispatch()

@@ -2,13 +2,14 @@ import { put, takeLatest } from 'redux-saga/effects'
 import axios from 'axios'
 
 import LocalStorage from '../../local-storage'
-import { LoginUserRequestAction, LogoutUserAction } from '../types'
+import { LoginUserRequestAction } from '../types'
 
 import {
   loginUserSuccess,
   loginUserFail,
   getUserSuccess,
   getUserFail,
+  setLoggedIn,
 } from '../actions/user'
 
 function* loginUserSaga(action: LoginUserRequestAction) {
@@ -22,6 +23,7 @@ function* loginUserSaga(action: LoginUserRequestAction) {
     if (res.data.status === 200) {
       yield put(loginUserSuccess(res.data.payload))
       yield LocalStorage.saveToken(res.data.payload.token)
+      yield put(setLoggedIn())
       history.push('/user/profile')
     }
   } catch (error) {
@@ -38,16 +40,9 @@ function* getUserSaga() {
     yield put(getUserFail(error))
   }
 }
-
-function* logout(action: LogoutUserAction) {
-  const history = action.payload
-  yield history.push('/')
-}
-
 const sagaWatcher = [
   takeLatest('LOGIN_USER_REQUEST', loginUserSaga),
   takeLatest('GET_USER_REQUEST', getUserSaga),
-  takeLatest('LOGOUT_USER', logout),
 ]
 
 export default sagaWatcher

@@ -7,16 +7,17 @@ import { AppState } from './types'
 
 export const initState: AppState = {
   user: {
+    isLoggedIn: false,
     userInfo: {
       role: '',
       id: 0,
-      loading: false,
-      error: null,
     },
     info: {
       jobPosts: [],
       skills: [],
     },
+    loading: false,
+    error: null,
   },
   employer: {
     companyName: '',

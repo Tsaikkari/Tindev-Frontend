@@ -7,6 +7,8 @@ import {
   GET_USER_SUCCESS,
   GET_USER_FAIL,
   UserActions,
+  SET_LOGGED_IN,
+  SET_LOADING,
 } from '../types'
 
 const initialState = {
@@ -24,7 +26,8 @@ const initialState = {
     institute: '',
     degree: '',
   },
-  loading: false,
+  isLoggedIn: false,
+  loading: true,
   error: null,
   jobPost: {
     title: '',
@@ -47,11 +50,20 @@ const user = (state = initialState, action: UserActions) => {
         history: action.payload.history,
       }
     case LOGIN_USER_SUCCESS:
-      return { ...state, loading: false, userInfo: action.payload }
+      return {
+        ...state,
+        loading: false,
+        userInfo: action.payload,
+        isLoggedIn: true,
+      }
     case LOGIN_USER_FAIL:
       return { ...state, loading: false, error: action.payload }
     case LOGOUT_USER:
       return {}
+    case SET_LOGGED_IN:
+      return { ...state, loading: false, isLoggedIn: true }
+    case SET_LOADING:
+      return { ...state }
     case GET_USER_REQUEST:
       return { ...state, loading: true }
     case GET_USER_SUCCESS:

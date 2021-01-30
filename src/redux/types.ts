@@ -5,7 +5,7 @@ export const REGISTER_EMPLOYER_SUCCESS = 'REGISTER_EMPLOYER_SUCCESS'
 export const REGISTER_EMPLOYER_FAIL = 'REGISTER_EMPLOYER_FAIL'
 export const UPDATE_EMPLOYER_REQUEST = 'UPDATE_EMPLOYER_REQUEST'
 export const UPDATE_EMPLOYER_SUCCESS = 'UPDATE_EMPLOYER_SUCCESS'
-export const UPDATE_EMPLOYER_FAIL = 'UPDATE_USER_FAIL'
+export const UPDATE_EMPLOYER_FAIL = 'UPDATE_EMPLOYER_FAIL'
 export const GET_USER_REQUEST = 'GET_USER_REQUEST'
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS'
 export const GET_USER_FAIL = 'GET_EMPLOYER_FAIL'
@@ -37,13 +37,16 @@ export const GET_SKILLS_FAIL = 'GET_SKILLS_FAIL'
 export const ADD_SKILL = 'ADD_SKILL'
 export const REMOVE_SKILL = 'REMOVE_SKILL'
 export const REDIRECT_PAGE = 'REDIRECT_PAGE'
-
+export const SET_LOGGED_IN = 'SET_LOGGED_IN'
+export const SET_LOADING = 'SET_LOADING'
 // User
 export type UserActions =
   | LoginUserRequestAction
   | LoginUserSuccessAction
   | LoginUserFailAction
   | LogoutUserAction
+  | SetLoggedInAction
+  | SetLoadingAction
   | GetUserRequestAction
   | GetUserSuccessAction
   | GetUserFailAction
@@ -99,7 +102,6 @@ export type LoginUserFailAction = {
 
 export type LogoutUserAction = {
   type: typeof LOGOUT_USER
-  payload: any
 }
 
 // Employer
@@ -110,6 +112,9 @@ export type EmployerActions =
   | UpdateEmployerRequestAction
   | UpdateEmployerSuccessAction
   | UpdateEmployerFailAction
+  | GetUserRequestAction
+  | GetUserSuccessAction
+  | GetUserFailAction
 
 export type RegisterEmployerRequestAction = {
   type: typeof REGISTER_EMPLOYER_REQUEST
@@ -397,13 +402,14 @@ export type CredentialStateUser = {
   userInfo: {
     role: string
     id: number
-    loading: Boolean
-    error: any
   }
   info: {
     jobPosts: any[]
     skills: any[]
   }
+  isLoggedIn: Boolean
+  loading: Boolean
+  error: any
 }
 
 export type CredentialStateEmployer = {
@@ -444,4 +450,12 @@ export type AppState = {
   employer: CredentialStateEmployer
   jobseeker: CredentialStateJobseeker
   resources: ResourcesState
+}
+
+export type SetLoggedInAction = {
+  type: typeof SET_LOGGED_IN
+}
+
+export type SetLoadingAction = {
+  type: typeof SET_LOADING
 }

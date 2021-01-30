@@ -3,10 +3,11 @@ import {
   LOGIN_USER_SUCCESS,
   LOGIN_USER_FAIL,
   LOGOUT_USER,
+  SET_LOGGED_IN,
+  SET_LOADING,
   GET_USER_REQUEST,
   GET_USER_SUCCESS,
   GET_USER_FAIL,
-  LogoutUserAction,
 } from '../types'
 
 export const loginUserRequest = (
@@ -39,10 +40,21 @@ export const loginUserFail = () => {
   }
 }
 
-export const logoutUser = (history: any): LogoutUserAction => {
+export const logoutUser = () => {
   return {
     type: LOGOUT_USER,
-    payload: history,
+  }
+}
+
+export const setLoggedIn = () => {
+  return {
+    type: SET_LOGGED_IN,
+  }
+}
+
+export const setLoading = () => {
+  return {
+    type: SET_LOADING,
   }
 }
 

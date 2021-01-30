@@ -19,7 +19,7 @@ const CompanyProfileForm = () => {
 
   const dispatch = useDispatch()
 
-  const user = useSelector((state: AppState) => state.user.userInfo)
+  const user = useSelector((state: AppState) => state.user)
   const { loading, error } = user
 
   // click on + job post link

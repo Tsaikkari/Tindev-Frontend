@@ -6,7 +6,6 @@ import { Form, Row, Col } from 'react-bootstrap'
 
 import CustomSvgIcon from '../../components/CustomSvgIcon'
 import starsLady from '../../media/standing-lady.svg'
-import Loader from '../../components/Loader'
 import Message from '../../components/Message'
 import FormContainer from '../../components/FormContainer'
 import CustomButton from '../../components/CustomButton'
@@ -22,8 +21,8 @@ const Login = () => {
   const history = useHistory()
   const dispatch = useDispatch()
 
-  const user = useSelector((state: AppState) => state.user.userInfo)
-  const { error, loading } = user
+  const user = useSelector((state: AppState) => state.user)
+  const { error } = user
 
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault()
@@ -35,7 +34,6 @@ const Login = () => {
       <FormContainer>
         <h2 className="signin text-center purple-text">Signin to Tindev</h2>
         {error && <Message variant="danger">{error}</Message>}
-        {loading && <Loader />}
         <Form onSubmit={submitHandler}>
           <Form.Group controlId="email">
             <Form.Label className="label">EMAIL</Form.Label>

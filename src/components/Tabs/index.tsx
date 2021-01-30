@@ -21,7 +21,12 @@ const Tabs = ({ formComponent, matchComponent, jobPostListPage }: any) => {
       <Tab.Container defaultActiveKey="first">
         <Row>
           <Col className="tabs" sm={3}>
-            <Nav className="flex-column nav-bar">
+            <Nav
+              className="flex-column nav-bar"
+              variant="pills"
+              defaultActiveKey="first"
+              justify={true}
+            >
               <Nav.Item>
                 <Nav.Link eventKey="first">Profile</Nav.Link>
               </Nav.Item>

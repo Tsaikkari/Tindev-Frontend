@@ -4,6 +4,7 @@ import axios from 'axios'
 import Routes from './Routes'
 import './scss/styles.scss'
 import LocalStorage from './local-storage'
+import useLogin from './hooks/useLogin'
 
 const App = () => {
   useEffect(() => {
@@ -18,7 +19,7 @@ const App = () => {
       return config
     })
   }, [])
-
+  useLogin()
   return (
     <>
       <Routes />

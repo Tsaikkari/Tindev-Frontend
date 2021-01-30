@@ -7,8 +7,8 @@ import { Form, Col } from 'react-bootstrap'
 import HalfCircle from '../../components/HalfCircle'
 import CustomSvgIcon from '../../components/CustomSvgIcon'
 import starsLady from '../../media/star-lady.svg'
-import Loader from '../../components/Loader'
 import Message from '../../components/Message'
+import Loader from '../../components/Loader'
 import { registerEmployerRequest } from '../../redux/actions/employer'
 import { registerJobseekerRequest } from '../../redux/actions/jobseeker'
 import { AppState } from '../../redux/types'
@@ -23,7 +23,7 @@ const Register = () => {
   const history = useHistory()
   const employer = useSelector((state: AppState) => state.employer)
   const jobseeker = useSelector((state: AppState) => state.jobseeker)
-  const user = useSelector((state: AppState) => state.user.userInfo)
+  const user = useSelector((state: AppState) => state.user)
   const { error, loading } = user
 
   const dispatch = useDispatch()
@@ -40,8 +40,6 @@ const Register = () => {
       if (role === employer) {
         dispatch(registerEmployerRequest(email, password, history))
       }
-      // setMessage('Registered successfully')
-      // setTimeout(() => history.push('/login'), 2000)
     }
   }
 
