@@ -32,7 +32,7 @@ const styles = {
 const JobseekerProfileForm = () => {
   const user = useSelector((state: AppState) => state.user.userInfo)
   const [tags, setTags] = useState<any[]>([])
-  const [startingAt, setStartingAt] = useState<DayValue>(null)
+  const [startingAt, setStartingAt] = useState<DayValue>()
   const [isOpenRelocate, setOpenRelocate] = useState(user.relocate)
   const [workingExperience, setWorkingExperience] = useState(0)
   const [state, setState] = useState({
@@ -47,6 +47,11 @@ const JobseekerProfileForm = () => {
     relocate: isOpenRelocate,
     startingDate: startingAt,
   })
+
+  const formatInputValue = () => {
+    if (!startingAt) return ''
+    return `${startingAt.day}.${startingAt.month}.${startingAt.year}`
+  }
 
   // Skill tags
   const skills = useSelector((state: AppState) => state.resources.skills)
@@ -97,7 +102,7 @@ const JobseekerProfileForm = () => {
         institute: state.institute,
         skills: skills,
         workExperience: workingExperience,
-        startingDate: startingAt,
+        startingDate: formatInputValue(),
         relocate: isOpenRelocate,
       })
     )
@@ -266,6 +271,7 @@ const JobseekerProfileForm = () => {
               inputPlaceholder="Select earliest starting day"
               colorPrimary="#000"
               inputClassName="my-custom-input"
+              formatInputText={formatInputValue}
             />
           </Col>
         </Form.Group>
