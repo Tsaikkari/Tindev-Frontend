@@ -35,11 +35,6 @@ const LandingTop = () => {
               <animated.p style={showIn} className="card-text">
                 Get your real match without hatch.
               </animated.p>
-              {/* <p className="card-text">
-                <small className="font-weight-light">
-                  Application for both developers and employers
-                </small>
-              </p> */}
               <animated.div style={showIn} className="pt-1">
                 <Link
                   to="/register"

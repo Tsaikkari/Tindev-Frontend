@@ -13,6 +13,14 @@ const PWReset = () => {
       <FormContainer>
         <h2 className="text-center my-5 purple-text">Reset Password</h2>
         <Form noValidate>
+          <label htmlFor="email" className="form-label">
+            Enter Your Email
+          </label>
+          <Form.Row>
+            <Form.Group as={Col} controlId="email">
+              <Form.Control required type="email" />
+            </Form.Group>
+          </Form.Row>
           <label htmlFor="new-pw" className="form-label">
             New Password
           </label>

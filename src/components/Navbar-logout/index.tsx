@@ -1,14 +1,13 @@
 import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav } from 'react-bootstrap'
 
-//import './NavBar.scss'
 import LogOut from '../LogOut'
 
 const NavBar = () => {
   return (
     <Navbar expand="lg" collapseOnSelect className="navbar">
       <LinkContainer to="/">
-        <Navbar.Brand>TinDev</Navbar.Brand>
+        <Navbar.Brand>Tindev</Navbar.Brand>
       </LinkContainer>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">

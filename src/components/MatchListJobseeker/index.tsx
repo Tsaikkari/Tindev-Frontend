@@ -13,7 +13,6 @@ const MatchListJobseeker = () => {
         match.map((m: any) => (
           <MatchCardJobseeker
             key={m.id}
-            //@ts-ignore
             image={m.employer.image}
             companyName={m.employer.companyName}
             companyInfo={m.employer.companyInfo}

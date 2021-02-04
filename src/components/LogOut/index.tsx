@@ -19,14 +19,12 @@ const LogOut = () => {
   }
 
   return (
-    <>
-      <Button
-        style={styles.customButton}
-        onClick={() => deleteTokenFromLocalStorage()}
-      >
-        Log Out
-      </Button>
-    </>
+    <Button
+      style={styles.customButton}
+      onClick={() => deleteTokenFromLocalStorage()}
+    >
+      Log Out
+    </Button>
   )
 }
 export default LogOut

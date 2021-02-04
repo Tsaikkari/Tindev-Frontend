@@ -176,7 +176,7 @@ const JobPostForm = ({ header }: JobPostFormProps) => {
                   className="text-field"
                   type="text"
                   name="seniority"
-                  placeholder="Seniority"
+                  placeholder="Junior/Middle/Senior"
                   value={formData.seniority}
                   onChange={handleChange}
                 />

@@ -247,7 +247,7 @@ export type JobseekerUpdate = {
   institute: string
   degree: string
   contact: any
-  workExperience: number
+  workExperience: any
   image: string
 }
 
