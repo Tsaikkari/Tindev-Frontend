@@ -48,6 +48,7 @@ const JobseekerProfileForm = () => {
     startingDate: startingAt,
   })
 
+  // Date picker
   const formatInputValue = () => {
     if (!startingAt) return ''
     return `${startingAt.day}.${startingAt.month}.${startingAt.year}`
@@ -66,7 +67,8 @@ const JobseekerProfileForm = () => {
     setTags(tags)
   }
 
-  // Handler for form inputs. TODO: workExperience, relocate
+  // TODO: workExperience, relocate, contact
+  // Handler for form inputs.
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target
 
@@ -76,6 +78,7 @@ const JobseekerProfileForm = () => {
     })
   }
 
+  // Work experience
   const handleRange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget
     //@ts-ignore
@@ -110,6 +113,7 @@ const JobseekerProfileForm = () => {
     console.log('isOpenRelocate', isOpenRelocate)
   }
 
+  // Tag functions
   const handleDelete = (i: any) => {
     const filteredTags = tags.filter((tag, index) => index !== i)
     setTags(filteredTags)
@@ -129,7 +133,7 @@ const JobseekerProfileForm = () => {
         <Form.Group as={Row} controlId="formHorizontalFName">
           <Col sm={6}>
             <Form.Control
-              required
+              //required
               type="text"
               name="firstName"
               placeholder="First name"
@@ -140,7 +144,7 @@ const JobseekerProfileForm = () => {
 
           <Col sm={6}>
             <Form.Control
-              required
+              //required
               type="text"
               name="lastName"
               placeholder="Last name"
@@ -150,11 +154,12 @@ const JobseekerProfileForm = () => {
           </Col>
         </Form.Group>
 
+        {/* TODO */}
         <Form.Group as={Row} controlId="formHorizontalphone">
           <Col sm={6}>
             <Form.Control
-              required
-              type="tel"
+              //required
+              type="number"
               name="contact"
               placeholder="Phone Nr."
               value={state.contact}
@@ -164,7 +169,7 @@ const JobseekerProfileForm = () => {
 
           <Col sm={6}>
             <Form.Control
-              required
+              //required
               type="text"
               name="seniority"
               placeholder="Seniority"
@@ -181,7 +186,7 @@ const JobseekerProfileForm = () => {
         <Form.Row>
           <Col sm={6} style={styles.degree} className="degree">
             <Form.Control
-              required
+              //required
               type="text"
               placeholder="Degree"
               name="degree"
@@ -192,7 +197,7 @@ const JobseekerProfileForm = () => {
           </Col>
           <Col sm={6} style={styles.university} className="university">
             <Form.Control
-              required
+              //required
               type="text"
               placeholder="Institute"
               name="institute"
@@ -221,13 +226,14 @@ const JobseekerProfileForm = () => {
           </Col>
         </Form.Row>
 
+        {/* TODO */}
         <Form.Row>
           <Form.Label as="legend" column className="my-1">
             Work Experience in Years
           </Form.Label>
           <Col className="my-1 pl-2" lg={9}>
             <Form.Control
-              required
+              //required
               type="range"
               min="0"
               max="50"
@@ -241,6 +247,7 @@ const JobseekerProfileForm = () => {
           </Col>
         </Form.Row>
 
+        {/* TODO */}
         <Form.Row>
           <Form.Label as="legend" column sm="3" className="mt-3 mb-1">
             Open to Relocate?
