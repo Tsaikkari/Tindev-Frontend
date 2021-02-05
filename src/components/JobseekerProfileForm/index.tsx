@@ -73,6 +73,7 @@ const JobseekerProfileForm = () => {
     })
     dispatch(
       updateJobseekerRequest({
+        //@ts-ignore
         firstName: state.firstName,
         lastName: state.lastName,
         contact: state.contact,

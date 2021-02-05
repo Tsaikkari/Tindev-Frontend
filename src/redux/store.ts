@@ -49,8 +49,8 @@ export const initState: AppState = {
       jobDescription: '',
       seniority: '',
       skills: [],
-      startingDate: '',
       image: '',
+      startingDate: '',
     },
   },
 }
