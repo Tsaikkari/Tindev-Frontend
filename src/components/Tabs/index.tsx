@@ -9,7 +9,12 @@ import { AppState } from '../../redux/types'
 import './Tabs.scss'
 import { matchJobseekerRequest } from '../../redux/actions/jobseeker'
 
-const Tabs = ({ formComponent, matchComponent, jobPostListPage }: any) => {
+const Tabs = ({
+  formComponent,
+  matchComponent,
+  jobPostListPage,
+  chatBoxPage,
+}: any) => {
   const role = useSelector((state: AppState) => state.user.userInfo.role)
   const dispatch = useDispatch()
 
@@ -65,7 +70,7 @@ const Tabs = ({ formComponent, matchComponent, jobPostListPage }: any) => {
             <Tab.Content>
               <Tab.Pane eventKey="first">{formComponent}</Tab.Pane>
               <Tab.Pane eventKey="second">{matchComponent}</Tab.Pane>
-              <Tab.Pane eventKey="third"></Tab.Pane>
+              <Tab.Pane eventKey="third">{chatBoxPage}</Tab.Pane>
               <Tab.Pane eventKey="fourth">{jobPostListPage}</Tab.Pane>
             </Tab.Content>
           </Col>

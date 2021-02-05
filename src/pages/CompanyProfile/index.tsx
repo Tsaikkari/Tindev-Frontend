@@ -8,6 +8,7 @@ import CompanyProfileForm from '../../components/CompanyProfileForm'
 import JobPostList from '../JobPostList'
 import './CompanyProfile.scss'
 import { AppState } from '../../redux/types'
+import ChatBox from '../../components/ChatBox'
 
 const CompanyProfile = () => {
   const match = {
@@ -25,6 +26,7 @@ const CompanyProfile = () => {
           formComponent={<CompanyProfileForm />}
           matchComponent={<MatchCardCompany match={match} />}
           jobPostListPage={<JobPostList />}
+          chatBoxPage={<ChatBox />}
         />
       </div>
     </>
