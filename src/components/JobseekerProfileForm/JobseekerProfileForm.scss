@@ -31,11 +31,11 @@
 button.btn-primary,
 .switch-on.btn,
 .switch-off.btn {
-  background: $purple-color;
+  background: $dark-purple;
   border: 2px solid $white;
   color: $white;
   &:hover {
-    background: $dark-purple;
+    background: $purple-color;
     color: $white;
   }
 }

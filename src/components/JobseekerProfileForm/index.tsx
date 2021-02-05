@@ -64,7 +64,7 @@ const JobseekerProfileForm = () => {
   })
 
   const handleInputChange = () => {
-    setTags(tags)
+    return setTags(tags)
   }
 
   // TODO: workExperience, relocate, contact
@@ -81,8 +81,7 @@ const JobseekerProfileForm = () => {
   // Work experience
   const handleRange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.currentTarget
-    //@ts-ignore
-    setWorkingExperience(value)
+    setWorkingExperience(Number(value))
   }
 
   const dispatch = useDispatch()
@@ -104,7 +103,7 @@ const JobseekerProfileForm = () => {
         degree: state.degree,
         institute: state.institute,
         skills: skills,
-        workExperience: workingExperience,
+        workExperience: state.workExperience,
         startingDate: formatInputValue(),
         relocate: isOpenRelocate,
       })
@@ -236,7 +235,7 @@ const JobseekerProfileForm = () => {
               //required
               type="range"
               min="0"
-              max="50"
+              max="30"
               className="slider"
               id="range"
               name="workingExperience"
