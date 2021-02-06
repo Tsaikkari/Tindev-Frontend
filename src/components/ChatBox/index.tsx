@@ -1,4 +1,4 @@
-import React /*, { useState }*/ from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import {
   Container,
@@ -18,21 +18,47 @@ import { AppState } from '../../redux/types'
 import './ChatBox.scss'
 
 const ChatBox = () => {
-  //const [newMessage, setNewMessage] = useState('')
-
+  // const role = useSelector((state: AppState) => state.user.userInfo.role)
+  // const companyName = useSelector((state: AppState) => state.employer.companyName)
+  // const jobseeker = useSelector((state: AppState) => state.jobseeker)
   const user = useSelector((state: AppState) => state.user)
 
-  const sendersMessage = {
-    sender: 'Kirsi',
-    receiver: 'Dilippo',
-    message: 'Hi Dilippo. We may have a job for you.',
-    time: '08:55',
+  const [newMessage, setNewMessage] = useState('')
+  // const [sender, setSender] = useState('')
+  // const [receiver, setReceiver] = useState('')
+  const time = new Date().toLocaleTimeString()
+
+  // if (role === 'employer') {
+  //   setSender(companyName)
+  //   setReceiver(jobseeker.firstName + ' ' + jobseeker.lastName)
+  // } else {
+  //   setSender(jobseeker.firstName + ' ' + jobseeker.lastName)
+  //   setReceiver(companyName)
+  // }
+
+  const [message, setMessage] = useState({
+    // sender: sender,
+    // receiver: receiver,
+    message: newMessage,
+    time: time,
+  })
+
+  const handleNewMessageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let message = e.target.value
+    setNewMessage(message)
+    console.log('message', message)
   }
-  const receiversMessage = {
-    sender: 'Dilippo',
-    reveicer: 'Kirsi',
-    message: "Hi Kirsi. I'm interested.",
-    time: '08:56',
+
+  const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault()
+    console.log('etargetvalue', e.target.value)
+    console.log('time', time)
+    setMessage({
+      // sender: message.sender,
+      // receiver: message.receiver,
+      message: newMessage,
+      time: time,
+    })
   }
 
   return (
@@ -53,37 +79,33 @@ const ChatBox = () => {
               )}
             </Card>
           </Col>
-
           <Col xl="8" sm="9" className="col-9">
             <Card>
               <Card.Header className="selected-user">
                 <span>
-                  To:{' '}
-                  <span className="chat-name">{sendersMessage.receiver}</span>
+                  {/* To: <span className="chat-name">{receiver}</span> */}
                 </span>
               </Card.Header>
               <Card.Body className="chat-container chat-messages">
                 <ListGroup className="chat-box">
-                  <Outgoing sendersMessage={sendersMessage} />
-                  <Incoming receiversMessage={receiversMessage} />
+                  <Outgoing sendersMessage={message} />
+                  <Incoming receiversMessage={message} />
                 </ListGroup>
               </Card.Body>
               <div className="flex-grow-0 py-3 px-4 border-top">
-                <Form.Group className="input-group" controlId="message">
-                  <Form.Control
-                    type="text"
-                    className="form-control chat-input"
-                    // value={newMessage}
-                    // onChange={e => handleNewMessageChange(e)}
-                    placeholder="Write message..."
-                  />
-                  <Button
-                    // onClick={handleSendMessage}
-                    className="btn btn-primary chat-button"
-                  >
-                    Send
-                  </Button>
-                </Form.Group>
+                <Form onSubmit={(e: any) => handleSubmit(e)}>
+                  <Form.Group className="input-group">
+                    <Form.Control
+                      type="text"
+                      className="form-control"
+                      name="message"
+                      value={newMessage}
+                      onChange={handleNewMessageChange}
+                      placeholder="Write message..."
+                    />
+                  </Form.Group>
+                </Form>
+                <Button className="btn btn-primary">Send</Button>
               </div>
             </Card>
           </Col>
@@ -92,4 +114,5 @@ const ChatBox = () => {
     </>
   )
 }
+
 export default ChatBox

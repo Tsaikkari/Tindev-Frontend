@@ -130,7 +130,7 @@ const JobseekerProfileForm = () => {
       </div>
       <UploadImage />
       <Form onSubmit={e => handleSubmit(e)} className="container my-5">
-        <Form.Group as={Row} controlId="formHorizontalFName">
+        <Form.Group as={Row} controlId="formHorizontalName">
           <Col sm={6}>
             <Form.Control
               //required
@@ -155,7 +155,7 @@ const JobseekerProfileForm = () => {
         </Form.Group>
 
         {/* TODO */}
-        <Form.Group as={Row} controlId="formHorizontalphone">
+        <Form.Group as={Row} controlId="formHorizontalInfo">
           <Col sm={6}>
             <Form.Control
               //required
