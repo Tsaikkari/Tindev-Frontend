@@ -108,7 +108,7 @@ const JobPostForm = ({ header }: JobPostFormProps) => {
       {loading && <Loader />}
       <h2>{header}</h2>
       <Row>
-        <Col xs>
+        <Col>
           <Form onSubmit={submitHandler}>
             <Form.Group
               className="form-group-set"

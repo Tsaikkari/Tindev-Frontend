@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { ListGroup } from 'react-bootstrap'
 
 import UserImage from '../UserImage'
 import { AppState } from '../../redux/types'
@@ -13,8 +14,8 @@ const UsersListCompany = () => {
   const user = useSelector((state: AppState) => state.user)
 
   return (
-    <ul className="users">
-      <li className="person" data-chat={user}>
+    <ListGroup className="users">
+      <ListGroup.Item className="person" data-chat={user}>
         <div className="user">
           {user.userInfo.role === 'job seeker' && (
             <>
@@ -37,8 +38,8 @@ const UsersListCompany = () => {
             <span className="chat-name">{js.firstName}</span>
           })} */}
         </p>
-      </li>
-    </ul>
+      </ListGroup.Item>
+    </ListGroup>
   )
 }
 

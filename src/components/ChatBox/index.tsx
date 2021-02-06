@@ -1,5 +1,14 @@
 import React /*, { useState }*/ from 'react'
 import { useSelector } from 'react-redux'
+import {
+  Container,
+  Row,
+  Col,
+  Form,
+  Card,
+  ListGroup,
+  Button,
+} from 'react-bootstrap'
 
 import Incoming from './Incoming'
 import Outgoing from './Outgoing'
@@ -28,55 +37,58 @@ const ChatBox = () => {
 
   return (
     <>
-      <div className="container">
-        <div className="row no-gutters">
-          <div className="col-xl-4 col-sm-3 col-3">
-            <div className="users-container">
+      <Container fluid="md">
+        <Row className="no-gutters">
+          <Col sm="3" xl="4" className="col-3">
+            <Card className="users-container">
               <div className="chat-search-box">
-                <div className="input-group">
-                  <input className="form-control" placeholder="Search" />
-                  <div className="input-group-btn"></div>
-                </div>
+                <Form.Group className="input-group">
+                  <Form.Control className="form-control" placeholder="Search" />
+                </Form.Group>
               </div>
               {user.userInfo.role === 'job seeker' ? (
                 <UsersListJobseeker />
               ) : (
                 <UsersListCompany />
               )}
-            </div>
-          </div>
-          <div className="col-xl-8 col-sm-9 col-9">
-            <div className="selected-user">
-              <span>
-                To: <span className="chat-name">{sendersMessage.receiver}</span>
-              </span>
-            </div>
-            <div className="chat-container chat-messages">
-              <ul className="chat-box">
-                <Outgoing sendersMessage={sendersMessage} />
-                <Incoming receiversMessage={receiversMessage} />
-              </ul>
-            </div>
-            <div className="flex-grow-0 py-3 px-4 border-top">
-              <div className="input-group">
-                <input
-                  type="text"
-                  className="form-control"
-                  // value={newMessage}
-                  // onChange={e => handleNewMessageChange(e)}
-                  placeholder="Write message..."
-                />
-                <button
-                  // onClick={handleSendMessage}
-                  className="btn btn-primary"
-                >
-                  Send
-                </button>
+            </Card>
+          </Col>
+
+          <Col xl="8" sm="9" className="col-9">
+            <Card>
+              <Card.Header className="selected-user">
+                <span>
+                  To:{' '}
+                  <span className="chat-name">{sendersMessage.receiver}</span>
+                </span>
+              </Card.Header>
+              <Card.Body className="chat-container chat-messages">
+                <ListGroup className="chat-box">
+                  <Outgoing sendersMessage={sendersMessage} />
+                  <Incoming receiversMessage={receiversMessage} />
+                </ListGroup>
+              </Card.Body>
+              <div className="flex-grow-0 py-3 px-4 border-top">
+                <Form.Group className="input-group" controlId="message">
+                  <Form.Control
+                    type="text"
+                    className="form-control chat-input"
+                    // value={newMessage}
+                    // onChange={e => handleNewMessageChange(e)}
+                    placeholder="Write message..."
+                  />
+                  <Button
+                    // onClick={handleSendMessage}
+                    className="btn btn-primary chat-button"
+                  >
+                    Send
+                  </Button>
+                </Form.Group>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
+            </Card>
+          </Col>
+        </Row>
+      </Container>
     </>
   )
 }

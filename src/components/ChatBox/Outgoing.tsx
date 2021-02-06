@@ -1,10 +1,11 @@
 import React from 'react'
+import { ListGroup } from 'react-bootstrap'
 import { Image } from 'react-bootstrap'
 
 const Outgoing = ({ sendersMessage }: any) => {
   return (
     <>
-      <li className="chat-left">
+      <ListGroup.Item className="chat-left">
         <div className="chat-avatar">
           <Image
             src="https://www.bootdey.com/img/Content/avatar/avatar3.png"
@@ -16,7 +17,7 @@ const Outgoing = ({ sendersMessage }: any) => {
         <div className="chat-hour">
           {sendersMessage.time} <span className="fa fa-check-circle"></span>
         </div>
-      </li>
+      </ListGroup.Item>
     </>
   )
 }

@@ -10,15 +10,14 @@ ul {
 .selected-user {
   border-bottom: 1px solid $grey;
   border-radius: 0 3px 0 0;
-  line-height: 64px;
-  min-height: 64px;
-  padding: 0 15px;
+  line-height: 2.3rem;
+  min-height: 2.3rem;
   width: 100%;
 }
 
 .chat-search-box {
   border-radius: 3px 0 0 0;
-  padding: 0.75rem 1rem;
+  padding: 0.4rem 1rem;
 }
 
 .chat-messages {
@@ -33,40 +32,40 @@ ul {
   position: relative;
 }
 
-.chat-container li.chat-left,
-.chat-container li.chat-right {
+.chat-container .chat-left,
+.chat-container .chat-right {
   display: flex;
   flex: 1;
   flex-direction: row;
   margin-bottom: 40px;
 }
 
-.chat-container li.chat-right {
+.chat-container .chat-right {
   justify-content: flex-end;
 }
 
-.chat-container li img {
+.chat-container img {
   border-radius: 30px;
   height: 48px;
   width: 48px;
 }
 
-.chat-container li .chat-avatar {
+.chat-container .chat-avatar {
   margin-right: 20px;
 }
 
-.chat-container li.chat-right > .chat-avatar {
+.chat-container .chat-right > .chat-avatar {
   margin-left: 20px;
   margin-right: 0;
 }
 
-.chat-container li .chat-name {
+.chat-container .chat-name {
   color: #999;
   font-size: 0.75rem;
   text-align: center;
 }
 
-.chat-container li .chat-text {
+.chat-container .chat-text {
   background: $white;
   border-radius: 4px;
   font-weight: 300;
@@ -75,7 +74,7 @@ ul {
   position: relative;
 }
 
-.chat-container li .chat-text:before {
+.chat-container .chat-text:before {
   content: '';
   position: absolute;
   width: 0;
@@ -86,17 +85,17 @@ ul {
   border-color: transparent $white transparent transparent;
 }
 
-.chat-container li.chat-right > .chat-text {
+.chat-container .chat-right > .chat-text {
   text-align: right;
 }
 
-.chat-container li.chat-right > .chat-text:before {
+.chat-container .chat-right > .chat-text:before {
   border-color: transparent transparent transparent $white;
   right: -20px;
   left: inherit;
 }
 
-.chat-container li .chat-hour {
+.chat-container .chat-hour {
   padding: 0;
   font-size: 0.75rem;
   display: flex;
@@ -106,42 +105,46 @@ ul {
   margin: 0 0 0 15px;
 }
 
-.chat-container li .chat-hour > span {
+.chat-container .chat-hour > span {
   font-size: 16px;
   color: $green;
 }
 
-.chat-container li.chat-right > .chat-hour {
+.chat-container .chat-right > .chat-hour {
   margin: 0 15px 0 0;
+}
+
+.input-group > .form-control.chat-input {
+  margin-top: 1rem;
 }
 
 // mobile screen
 @media (max-width: 767px) {
-  .chat-container li.chat-left,
-  .chat-container li.chat-right {
+  .chat-container .chat-left,
+  .chat-container .chat-right {
     flex-direction: column;
     margin-bottom: 30px;
   }
 
-  .chat-container li img {
+  .chat-container img {
     width: 32px;
     height: 32px;
   }
 
-  .chat-container li.chat-left .chat-hour {
+  .chat-container .chat-left .chat-hour {
     justify-content: flex-end;
   }
 
-  .chat-container li.chat-right .chat-hour {
+  .chat-container .chat-right .chat-hour {
     justify-content: flex-start;
     order: 2;
   }
 
-  .chat-container li.chat-right .chat-name {
+  .chat-container .chat-right .chat-name {
     margin-right: 5px;
   }
 
-  .chat-container li .chat-text {
+  .chat-container .chat-text {
     font-size: 0.8rem;
   }
 
@@ -150,10 +153,15 @@ ul {
   }
 }
 
+.chat-button {
+  height: 2.59rem;
+  margin-top: 0.9rem;
+}
+
 // Users
 .users-container {
   position: relative;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   border-right: 1px solid #e6ecf3;
   height: 100%;
   display: -ms-flexbox;
