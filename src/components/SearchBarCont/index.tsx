@@ -1,11 +1,15 @@
 import React from 'react'
-import { Form, FormControl } from 'react-bootstrap'
+import { Form } from 'react-bootstrap'
 
 const SearchBarCont = () => {
   return (
-    <div className="row justify-content-end mr-5">
-      <Form inline>
-        <FormControl type="text" placeholder="Search" className=" mr-sm-2" />
+    <div className="chat-search-box">
+      <Form className="input-group">
+        <Form.Control
+          type="text"
+          placeholder="Search"
+          className="form-control"
+        />
       </Form>
     </div>
   )
