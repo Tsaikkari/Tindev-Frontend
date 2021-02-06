@@ -1,22 +1,20 @@
 import React from 'react'
 import { Image } from 'react-bootstrap'
 
-const Outgoing = () => {
+const Outgoing = ({ sendersMessage }: any) => {
   return (
     <>
-      <li className="chat-right">
-        <div className="chat-hour">
-          08:56 <span className="fa fa-check-circle"></span>
-        </div>
-        <div className="chat-text">
-          Hi, Dlip <br />I need more information about Developer Plan.
-        </div>
+      <li className="chat-left">
         <div className="chat-avatar">
           <Image
             src="https://www.bootdey.com/img/Content/avatar/avatar3.png"
             alt="avatar"
           />
-          <div className="chat-name">Sam</div>
+          <div className="chat-name">{sendersMessage.sender}</div>
+        </div>
+        <div className="chat-text">{sendersMessage.message}</div>
+        <div className="chat-hour">
+          {sendersMessage.time} <span className="fa fa-check-circle"></span>
         </div>
       </li>
     </>
