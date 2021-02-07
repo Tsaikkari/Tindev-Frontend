@@ -12,7 +12,7 @@ const ChatsList = () => {
     setChats(chats)
   }, [chats])
 
-  const navigateToChat = (chatId: any) => {
+  const navigateToChat = (chatId: string) => {
     history.push(`chats/${chatId}`)
   }
 

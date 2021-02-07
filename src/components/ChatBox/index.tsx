@@ -13,7 +13,7 @@ const ChatBox = () => {
     id: '',
     name: '',
     image: '',
-    lastMessage: messages.find((m: any) => m.index === messages.length),
+    lastMessage: messages.find((m: any) => m.index === messages.length - 1),
     messages,
   })
 
@@ -21,16 +21,17 @@ const ChatBox = () => {
     e.preventDefault()
 
     const message = {
-      id: messages.length - 1,
-      content: chat.lastMessage,
-      createdAt: new Date(),
+      id: chat.messages.length - 1,
+      content: chat.lastMessage.content,
+      createdAt: new Date().toLocaleTimeString,
     }
-    setMessages(messages.concat(message))
 
     setChat({
       ...chat,
       messages: chat.messages.concat(message),
     })
+
+    setMessages(chat.messages.concat(message))
   }
 
   return (
@@ -46,7 +47,7 @@ const ChatBox = () => {
           <Card>
             <Card.Header className="selected-user">
               <span>
-                To: <span className="chat-name">Dilip</span>
+                To: <span className="chat-name">{chat.name}</span>
               </span>
             </Card.Header>
             <Card.Body className="chat-container chat-messages">
