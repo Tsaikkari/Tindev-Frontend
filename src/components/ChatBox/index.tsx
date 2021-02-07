@@ -33,7 +33,7 @@ const ChatBox = () => {
       messages: chat.messages.concat(message),
     })
 
-    setMessages(chat.messages.concat(message))
+    setMessages(messages.concat(message))
   }
 
   return (
