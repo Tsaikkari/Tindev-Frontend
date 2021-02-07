@@ -5,19 +5,19 @@ import { Image } from 'react-bootstrap'
 const Outgoing = () => {
   return (
     <>
-      <ListGroup.Item className="chat-left">
+      <ListGroup className="chat-left">
         <div className="chat-avatar">
           <Image
             src="https://www.bootdey.com/img/Content/avatar/avatar3.png"
             alt="avatar"
           />
-          <div className="chat-name"></div>
+          <ListGroup.Item className="chat-name"></ListGroup.Item>
         </div>
-        <div className="chat-text"></div>
-        <div className="chat-hour">
+        <ListGroup.Item className="chat-text"></ListGroup.Item>
+        <ListGroup.Item className="chat-hour">
           <span className="fa fa-check-circle"></span>
-        </div>
-      </ListGroup.Item>
+        </ListGroup.Item>
+      </ListGroup>
     </>
   )
 }

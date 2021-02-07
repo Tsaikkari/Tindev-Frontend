@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, ListGroupItem } from 'react-bootstrap'
+import { Container, ListGroup } from 'react-bootstrap'
 import moment from 'moment'
 
 const MessagesList = ({ messages }: any) => {
@@ -8,10 +8,12 @@ const MessagesList = ({ messages }: any) => {
       <Container>
         {messages.map((m: any) => {
           return (
-            <ListGroupItem key={m.id}>
-              <div>{m.content}</div>
-              <div>{moment(m.createdAt).format('HH:mm')}</div>
-            </ListGroupItem>
+            <ListGroup key={m.id}>
+              <ListGroup.Item>{m.content}</ListGroup.Item>
+              <ListGroup.Item>
+                {moment(m.createdAt).format('HH:mm')}
+              </ListGroup.Item>
+            </ListGroup>
           )
         })}
       </Container>
