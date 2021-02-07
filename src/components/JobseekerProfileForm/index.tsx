@@ -96,7 +96,6 @@ const JobseekerProfileForm = () => {
     })
     dispatch(
       updateJobseekerRequest({
-        //@ts-ignore
         firstName: state.firstName,
         lastName: state.lastName,
         contact: state.contact,
@@ -130,7 +129,7 @@ const JobseekerProfileForm = () => {
       </div>
       <UploadImage />
       <Form onSubmit={e => handleSubmit(e)} className="container my-5">
-        <Form.Group as={Row} controlId="formHorizontalName">
+        <Form.Group as={Row}>
           <Col sm={6}>
             <Form.Control
               //required
@@ -155,11 +154,11 @@ const JobseekerProfileForm = () => {
         </Form.Group>
 
         {/* TODO */}
-        <Form.Group as={Row} controlId="formHorizontalInfo">
+        <Form.Group as={Row}>
           <Col sm={6}>
             <Form.Control
               //required
-              type="number"
+              type="tel"
               name="contact"
               placeholder="Phone Nr."
               value={state.contact}

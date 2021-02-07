@@ -39,7 +39,7 @@ const MatchCardCompany = ({ match }: MatchCardProps) => {
                   </Link>
                 </Col>
                 <Col>
-                  <Link to="/chat">Chat</Link>
+                  <Link to="/chats">Chat</Link>
                 </Col>
               </div>
             </div>

@@ -16,6 +16,7 @@ const ChatBox = () => {
     lastMessage: messages.find((m: any) => m.index === messages.length - 1),
     messages,
   })
+  const [newMessage, setNewMessage] = useState('')
 
   const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
@@ -23,7 +24,7 @@ const ChatBox = () => {
     // TODO: id
     const message = {
       id: chat.messages.length,
-      content: chat.lastMessage.content,
+      content: newMessage,
       createdAt: new Date().toLocaleTimeString,
     }
 
@@ -55,7 +56,11 @@ const ChatBox = () => {
               <ListGroup className="chat-box">
                 <ChatsList />
               </ListGroup>
-              <Message handleSubmit={handleSubmit} />
+              <Message
+                newMessage={newMessage}
+                setNewMessage={setNewMessage}
+                handleSubmit={handleSubmit}
+              />
             </Card.Body>
           </Card>
         </Col>

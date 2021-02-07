@@ -74,7 +74,7 @@ ul {
   position: relative;
 }
 
-.chat-container .chat-text:before {
+.chat-container .chat-text::before {
   content: '';
   position: absolute;
   width: 0;
@@ -89,7 +89,7 @@ ul {
   text-align: right;
 }
 
-.chat-container .chat-right > .chat-text:before {
+.chat-container .chat-right > .chat-text::before {
   border-color: transparent transparent transparent $white;
   right: -20px;
   left: inherit;

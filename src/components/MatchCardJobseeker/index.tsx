@@ -41,7 +41,7 @@ const MatchCardJobseeker = ({
           <CustomRow name="Starting Date" item={startingDate} />
         </Col>
         <Col md={1}>
-          <Link to="/chat">Chat</Link>
+          <Link to="/chats">Chat</Link>
         </Col>
       </Row>
     </>

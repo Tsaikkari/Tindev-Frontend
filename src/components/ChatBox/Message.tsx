@@ -1,9 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
 
-const Message = ({ handleSubmit }: any) => {
-  const [newMessage, setNewMessage] = useState('')
-
+const Message = ({ handleSubmit, newMessage, setNewMessage }: any) => {
   const handleNewMessageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     setNewMessage(value)

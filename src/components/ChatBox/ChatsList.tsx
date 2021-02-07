@@ -24,7 +24,6 @@ const ChatsList = () => {
       {chats.map(chat => (
         <ListGroup.Item key={chat.id} className="chat-left">
           <UserImage image={chat.image} />
-          <br></br>
           {/* @ts-ignore */}
           <ListGroup.Item className="chat-name" onClick={navigateToChat(chat)}>
             {chat.name}
@@ -34,7 +33,6 @@ const ChatsList = () => {
               <ListGroup.Item className="chat-text">
                 {chat.lastMessage.content}
               </ListGroup.Item>
-              <br></br>
               <ListGroup.Item className="chat-hour">
                 {moment(chat.lastMessage.createdAt).format('HH:mm')}
               </ListGroup.Item>
