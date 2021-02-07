@@ -20,8 +20,9 @@ const ChatBox = () => {
   const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
 
+    // TODO: id
     const message = {
-      id: chat.messages.length - 1,
+      id: chat.messages.length,
       content: chat.lastMessage.content,
       createdAt: new Date().toLocaleTimeString,
     }
