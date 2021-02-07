@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { ListGroup, Image } from 'react-bootstrap'
+import { ListGroup } from 'react-bootstrap'
 import moment from 'moment'
 import { useHistory } from 'react-router-dom'
 
+import UserImage from '../UserImage'
+
+// TODO: Maybe use Incoming & Outgoing here
 const ChatsList = () => {
   const [chats, setChats] = useState<any[]>([])
 
@@ -20,19 +23,21 @@ const ChatsList = () => {
     <>
       {chats.map(chat => (
         <ListGroup.Item key={chat.id} className="chat-left">
-          <Image src={chat.image} />
+          <UserImage image={chat.image} />
           <br></br>
           {/* @ts-ignore */}
-          <div className="chat-name" onClick={navigateToChat(chat)}>
+          <ListGroup.Item className="chat-name" onClick={navigateToChat(chat)}>
             {chat.name}
-          </div>
+          </ListGroup.Item>
           {chat.lastMessage && (
             <>
-              <div className="chat-text">{chat.lastMessage.content}</div>
+              <ListGroup.Item className="chat-text">
+                {chat.lastMessage.content}
+              </ListGroup.Item>
               <br></br>
-              <div className="chat-hour">
+              <ListGroup.Item className="chat-hour">
                 {moment(chat.lastMessage.createdAt).format('HH:mm')}
-              </div>
+              </ListGroup.Item>
             </>
           )}
         </ListGroup.Item>
