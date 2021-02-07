@@ -25,7 +25,10 @@ const ChatsList = () => {
         <ListGroup.Item key={chat.id} className="chat-left">
           <UserImage image={chat.image} />
           {/* @ts-ignore */}
-          <ListGroup.Item className="chat-name" onClick={navigateToChat(chat)}>
+          <ListGroup.Item
+            className="chat-name"
+            onClick={navigateToChat(chat.id)}
+          >
             {chat.name}
           </ListGroup.Item>
           {chat.lastMessage && (
