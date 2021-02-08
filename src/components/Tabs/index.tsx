@@ -81,7 +81,6 @@ const Tabs = () => {
                 ) : (
                   <CompanyProfileForm />
                 )}
-                {topicId === 'jobseeker/match' && <MatchListJobseeker />}
               </Col>
             </Route>
             <Route path={`${path}/:topicId`}>
