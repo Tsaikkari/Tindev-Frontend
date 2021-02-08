@@ -80,7 +80,7 @@ const JobseekerProfileForm = () => {
 
   // Work experience
   const handleRange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.currentTarget
+    const value = e.target.value
     setWorkingExperience(Number(value))
   }
 

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Container, Row, Col, Card, ListGroup } from 'react-bootstrap'
 
 import SearchBarCont from './../SearchBarCont'
-import MessagesList from './MessagesList'
+import UsersList from './UsersList'
 import ChatsList from './ChatsList'
 import Message from './Message'
 import './ChatBox.scss'
@@ -42,7 +42,14 @@ const ChatBox = () => {
         <Col sm="3" xl="4" className="col-3">
           <Card className="users-container">
             <SearchBarCont />
-            {chat.messages && <MessagesList messages={chat.messages} />}
+            <UsersList
+              name={chat.name}
+              createdAt={
+                chat.lastMessage !== undefined && chat.lastMessage.createdAt
+              }
+            />
+            {/* TODO: make new page for messages list */}
+            {/* {chat.messages && <MessagesList messages={chat.messages} />} */}
           </Card>
         </Col>
         <Col xl="8" sm="9" className="col-9">
@@ -53,7 +60,7 @@ const ChatBox = () => {
               </span>
             </Card.Header>
             <Card.Body className="chat-container chat-messages">
-              <ListGroup className="chat-box">
+              <ListGroup className="chat-box border-top">
                 <ChatsList />
               </ListGroup>
               <Message

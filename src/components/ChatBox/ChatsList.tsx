@@ -16,7 +16,11 @@ const ChatsList = () => {
   }, [chats])
 
   const navigateToChat = (chatId: string) => {
-    history.push(`chats/${chatId}`)
+    history.push(`/chats/${chatId}`)
+  }
+
+  const navigateToMessages = () => {
+    history.push('/messages/')
   }
 
   return (
@@ -24,16 +28,20 @@ const ChatsList = () => {
       {chats.map(chat => (
         <ListGroup.Item key={chat.id} className="chat-left">
           <UserImage image={chat.image} />
-          {/* @ts-ignore */}
           <ListGroup.Item
             className="chat-name"
+            // @ts-ignore
             onClick={navigateToChat(chat.id)}
           >
             {chat.name}
           </ListGroup.Item>
           {chat.lastMessage && (
             <>
-              <ListGroup.Item className="chat-text">
+              {/* @ts-ignore */}
+              <ListGroup.Item
+                className="chat-text"
+                onClick={navigateToMessages()}
+              >
                 {chat.lastMessage.content}
               </ListGroup.Item>
               <ListGroup.Item className="chat-hour">

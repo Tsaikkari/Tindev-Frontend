@@ -239,6 +239,7 @@ ul {
   font-weight: 600;
   font-size: 0.85rem;
   display: inline-block;
+  padding: 0.5rem 0.3rem;
 }
 
 .users .person p.name-time .time {
@@ -246,6 +247,7 @@ ul {
   font-size: 0.7rem;
   text-align: right;
   color: #8796af;
+  padding-left: 0.3rem;
 }
 
 @media (max-width: 767px) {

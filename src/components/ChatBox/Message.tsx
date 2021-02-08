@@ -9,7 +9,7 @@ const Message = ({ handleSubmit, newMessage, setNewMessage }: any) => {
 
   return (
     <Container>
-      <div className="flex-grow-0 py-3 px-4 border-top">
+      <div className="flex-grow-0 py-3 px-4">
         <Form onSubmit={(e: any) => handleSubmit(e)}>
           <Form.Group className="input-group">
             <Form.Control
