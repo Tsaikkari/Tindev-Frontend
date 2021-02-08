@@ -1,20 +1,27 @@
 import React from 'react'
+import { useRouteMatch, Link, Switch, Route } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Tab, Row, Col, Nav } from 'react-bootstrap'
 
 import Navbar from '../Navbar-logout'
+import JobseekerProfileForm from '../JobseekerProfileForm'
+import CompanyProfileForm from '../CompanyProfileForm'
+//import TabComp from './TabComp'
 import { getUserRequest } from '../../redux/actions/user'
 import { getSkillsRequest } from '../../redux/actions/resources'
 import { AppState } from '../../redux/types'
 import './Tabs.scss'
 import { matchJobseekerRequest } from '../../redux/actions/jobseeker'
 
-const Tabs = ({
-  formComponent,
-  matchComponent,
-  jobPostListPage,
-  chatBoxPage,
-}: any) => {
+import { useParams } from 'react-router-dom'
+import MatchListJobseeker from '../MatchListJobseeker'
+import MatchCardCompany from '../MatchCardCompany'
+import JobPostList from '../../pages/JobPostList'
+import ChatBox from '../ChatBox'
+
+const Tabs = () => {
+  let { topicId }: any = useParams()
+  let { path, url } = useRouteMatch()
   const role = useSelector((state: AppState) => state.user.userInfo.role)
   const dispatch = useDispatch()
 
@@ -43,37 +50,49 @@ const Tabs = ({
               justify={true}
             >
               <Nav.Item>
-                <Nav.Link onClick={handleSkills} eventKey="first">
+                <Link to={`${url}/`} onClick={handleSkills}>
                   Profile
-                </Nav.Link>
+                </Link>
               </Nav.Item>
               {role === 'job seeker' ? (
                 <Nav.Item onClick={handleJobseekerMatch}>
-                  <Nav.Link eventKey="second">Match</Nav.Link>
+                  <Link to={`${url}/jobseeker/match`}>Match</Link>
                 </Nav.Item>
               ) : (
                 <Nav.Item>
-                  <Nav.Link eventKey="second">Match</Nav.Link>
+                  <Link to={`${url}/company/match`}>Match</Link>
                 </Nav.Item>
               )}
               <Nav.Item>
-                <Nav.Link eventKey="third">Chat</Nav.Link>
+                <Link to={`${url}/chats`}>Chat</Link>
               </Nav.Item>
               {role === 'employer' && (
                 <Nav.Item onClick={handleClick}>
-                  <Nav.Link eventKey="fourth">Job Posts</Nav.Link>
+                  <Link to={`${url}/jobposts`}>Job Posts</Link>
                 </Nav.Item>
               )}
             </Nav>
           </Col>
-          <Col sm={7} className="tab-content">
-            <Tab.Content>
-              <Tab.Pane eventKey="first">{formComponent}</Tab.Pane>
-              <Tab.Pane eventKey="second">{matchComponent}</Tab.Pane>
-              <Tab.Pane eventKey="third">{chatBoxPage}</Tab.Pane>
-              <Tab.Pane eventKey="fourth">{jobPostListPage}</Tab.Pane>
-            </Tab.Content>
-          </Col>
+          <Switch>
+            <Route exact path={path}>
+              <Col sm={7} className="tab-content">
+                {role === 'job seeker' ? (
+                  <JobseekerProfileForm />
+                ) : (
+                  <CompanyProfileForm />
+                )}
+                {topicId === 'jobseeker/match' && <MatchListJobseeker />}
+              </Col>
+            </Route>
+            <Route path={`${path}/:topicId`}>
+              <>
+                {topicId === 'jobseeker/match' && <MatchListJobseeker />}
+                {topicId === 'company/match' && <MatchCardCompany />}
+                {topicId === 'chats' && <ChatBox />}
+                {topicId === 'jobposts' && <JobPostList />}
+              </>
+            </Route>
+          </Switch>
         </Row>
       </Tab.Container>
     </div>

@@ -47,7 +47,7 @@ const ViewJobseeker = () => {
       </button>
       <button
         className="btn btn-outline-primary  mr-4 w-25 py-2 p-0"
-        onClick={() => history.push('/user/profile')}
+        onClick={() => history.push('/user/profile/')}
       >
         Go Back
       </button>

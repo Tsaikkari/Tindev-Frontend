@@ -3,17 +3,13 @@ import { Link } from 'react-router-dom'
 import { Col } from 'react-bootstrap'
 
 import Candidate from '../Candidate'
-//import male from '../../media/male.png'
 
-type MatchCardProps = {
-  match: {
-    firstName: string
-    lastName: string
-    skills: any[]
+const MatchCardCompany = () => {
+  const match = {
+    firstName: 'Dilip',
+    lastName: 'Poudel',
+    skills: ['javascript', 'react'],
   }
-}
-
-const MatchCardCompany = ({ match }: MatchCardProps) => {
   return (
     <div className="Container">
       <div className="d-flex flex-row-reverse"></div>
