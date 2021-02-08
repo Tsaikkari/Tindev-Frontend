@@ -1,6 +1,7 @@
 import React from 'react'
 import { ListGroup, Image } from 'react-bootstrap'
 
+// TODO: user.image
 const User = ({ name, createdAt }: any) => {
   return (
     <ListGroup.Item className="person" data-chat="person1">

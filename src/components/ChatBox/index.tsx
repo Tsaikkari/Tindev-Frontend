@@ -26,6 +26,8 @@ const ChatBox = () => {
     lastMessage: messages.find((m: any) => m.index === messages.length - 1),
     messages,
   })
+
+  // TODO: redux: addMessage
   const [newMessage, setNewMessage] = useState('')
 
   const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
