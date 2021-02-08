@@ -37,9 +37,9 @@ const ChatsList = () => {
           </ListGroup.Item>
           {chat.lastMessage && (
             <>
-              {/* @ts-ignore */}
               <ListGroup.Item
                 className="chat-text"
+                //@ts-ignore
                 onClick={navigateToMessages()}
               >
                 {chat.lastMessage.content}

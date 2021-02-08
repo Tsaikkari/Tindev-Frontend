@@ -7,12 +7,22 @@ import ChatsList from './ChatsList'
 import Message from './Message'
 import './ChatBox.scss'
 
+type User = {
+  id: string
+  name: string
+  image: string
+}
+
 const ChatBox = () => {
   const [messages, setMessages] = useState<any[]>([])
-  const [chat, setChat] = useState({
+  const [user, setUser] = useState({
     id: '',
     name: '',
     image: '',
+  })
+  const [chat, setChat] = useState({
+    id: '',
+    participants: [],
     lastMessage: messages.find((m: any) => m.index === messages.length - 1),
     messages,
   })
@@ -21,12 +31,25 @@ const ChatBox = () => {
   const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
 
-    // TODO: id
-    const message = {
-      id: chat.messages.length,
+    const users = chat.participants
+      .map((p: any) => users.find((u: any) => u.id === p))
+      .filter(Boolean) as User[]
+
+    const message: any = {
+      id: chat.messages.find((m: any) => m.id === chat.lastMessage),
       content: newMessage,
       createdAt: new Date().toLocaleTimeString,
+      sender: users.find((user: any) => user.id === message.sender || null),
+      recipient: users.find(
+        (user: any) => user.id === message.recipient || null
+      ),
     }
+
+    setUser({
+      id: user.id,
+      name: user.name,
+      image: user.image,
+    })
 
     setChat({
       ...chat,
@@ -42,21 +65,14 @@ const ChatBox = () => {
         <Col sm="3" xl="4" className="col-3">
           <Card className="users-container">
             <SearchBarCont />
-            <UsersList
-              name={chat.name}
-              createdAt={
-                chat.lastMessage !== undefined && chat.lastMessage.createdAt
-              }
-            />
-            {/* TODO: make new page for messages list */}
-            {/* {chat.messages && <MessagesList messages={chat.messages} />} */}
+            <UsersList users={chat.participants} />
           </Card>
         </Col>
         <Col xl="8" sm="9" className="col-9">
           <Card>
             <Card.Header className="selected-user">
               <span>
-                To: <span className="chat-name">{chat.name}</span>
+                To: <span className="chat-name">{user.name}</span>
               </span>
             </Card.Header>
             <Card.Body className="chat-container chat-messages">
