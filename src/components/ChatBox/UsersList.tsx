@@ -11,7 +11,7 @@ const UsersList = ({ users }: any) => {
           <User name={user.name} createdAt={user.createdAt} />
         ))
       ) : (
-        <h3>No Users</h3>
+        <h5 className="no-users">No Users</h5>
       )}
     </ListGroup>
   )

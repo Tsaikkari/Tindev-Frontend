@@ -7,7 +7,7 @@ import ChatsList from './ChatsList'
 import Message from './Message'
 import './ChatBox.scss'
 
-type User = {
+export type ChatUser = {
   id: string
   name: string
   image: string
@@ -33,7 +33,7 @@ const ChatBox = () => {
 
     const users = chat.participants
       .map((p: any) => users.find((u: any) => u.id === p))
-      .filter(Boolean) as User[]
+      .filter(Boolean) as ChatUser[]
 
     const message: any = {
       id: chat.messages.find((m: any) => m.id === chat.lastMessage),

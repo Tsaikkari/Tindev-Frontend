@@ -11,8 +11,8 @@ const User = ({ name, createdAt }: any) => {
         />
         <span className="status busy"></span>
         <p className="name-time">
-          <span className="chat-name">Dilip Poudel{name}</span>
-          <span className="time">8/2/21{createdAt}</span>
+          <span className="chat-name">{name}</span>
+          <span className="time">{createdAt}</span>
         </p>
       </div>
     </ListGroup.Item>
