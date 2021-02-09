@@ -37,8 +37,8 @@ const ChatBox = () => {
 
     setCurrentUser({
       id: message.sender,
-      name: message.sender.name,
-      image: message.sender.image,
+      name: currentUser.name,
+      image: currentUser.image,
     })
 
     setChat({
