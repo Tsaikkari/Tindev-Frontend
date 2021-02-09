@@ -47,10 +47,8 @@ const ChatBox = () => {
       ),
     }
 
-    const currentUser = message.sender
-
     setCurrentUser({
-      id: currentUser.id,
+      id: message.sender,
       name: currentUser.name,
       image: currentUser.image,
     })
