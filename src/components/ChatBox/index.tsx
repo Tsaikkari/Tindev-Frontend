@@ -27,12 +27,12 @@ const ChatBox = () => {
     messages,
   })
 
-  // TODO: redux: addMessage
   const [newMessage, setNewMessage] = useState('')
 
   const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
 
+    // TODO: change to const participants when getting users from somewhere. :)))
     const users = chat.participants
       .map((p: any) => users.find((u: any) => u.id === p))
       .filter(Boolean) as ChatUser[]
@@ -41,12 +41,11 @@ const ChatBox = () => {
       id: chat.messages.find((m: any) => m.id === chat.lastMessage),
       content: newMessage,
       createdAt: new Date().toLocaleTimeString,
-      sender: users.find((user: any) => user.id === message.sender || null),
-      recipient: users.find(
-        (user: any) => user.id === message.recipient || null
-      ),
+      sender: users.find((user: any) => user.id === currentUser.id || null),
+      recipient: users.find((user: any) => user.id !== currentUser.id || null),
     }
 
+    // TODO
     setCurrentUser({
       id: message.sender,
       name: currentUser.name,
@@ -56,10 +55,7 @@ const ChatBox = () => {
     setChat({
       ...chat,
       messages: chat.messages.concat(message),
-      participants: chat.participants.concat(
-        chat.messages.find((m: any) => m.sender === currentUser.id),
-        chat.messages.find((m: any) => m.recipient !== currentUser.id)
-      ),
+      participants: chat.participants.concat(message.sender, message.recipient),
     })
 
     setMessages(messages.concat(message))
