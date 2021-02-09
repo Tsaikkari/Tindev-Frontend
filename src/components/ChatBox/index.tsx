@@ -7,6 +7,12 @@ import ChatsList from './ChatsList'
 import Message from './Message'
 import './ChatBox.scss'
 
+export type ChatUser = {
+  id: string
+  name: string
+  image: string
+}
+
 const ChatBox = () => {
   const [messages, setMessages] = useState<any[]>([])
   const [currentUser, setCurrentUser] = useState({
@@ -27,16 +33,24 @@ const ChatBox = () => {
   const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
 
+    const users = chat.participants
+      .map((p: any) => users.find((u: any) => u.id === p))
+      .filter(Boolean) as ChatUser[]
+
     const message: any = {
       id: chat.messages.find((m: any) => m.id === chat.lastMessage),
       content: newMessage,
       createdAt: new Date().toLocaleTimeString,
-      sender: currentUser.id,
-      recipient: chat.participants.find((p: any) => p !== currentUser.id),
+      sender: users.find((user: any) => user.id === message.sender || null),
+      recipient: users.find(
+        (user: any) => user.id === message.recipient || null
+      ),
     }
 
+    const currentUser = message.sender
+
     setCurrentUser({
-      id: message.sender,
+      id: currentUser.id,
       name: currentUser.name,
       image: currentUser.image,
     })
