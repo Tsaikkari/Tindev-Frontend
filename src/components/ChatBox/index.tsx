@@ -44,6 +44,10 @@ const ChatBox = () => {
     setChat({
       ...chat,
       messages: chat.messages.concat(message),
+      participants: chat.participants.concat(
+        chat.messages.find((m: any) => m.sender === currentUser.id),
+        chat.messages.find((m: any) => m.recipient !== currentUser.id)
+      ),
     })
 
     setMessages(messages.concat(message))

@@ -1,15 +1,13 @@
 import React from 'react'
-import { ListGroup, Image } from 'react-bootstrap'
+import { ListGroup } from 'react-bootstrap'
 
-// TODO: user.image
-const User = ({ name, createdAt }: any) => {
+import UserImage from '../UserImage'
+
+const User = ({ name, createdAt, image }: any) => {
   return (
     <ListGroup.Item className="person" data-chat="person1">
       <div className="user">
-        <Image
-          src="https://www.bootdey.com/img/Content/avatar/avatar1.png"
-          alt="avatar"
-        />
+        <UserImage image={image} />
         <span className="status busy"></span>
         <p className="name-time">
           <span className="chat-name">{name}</span>

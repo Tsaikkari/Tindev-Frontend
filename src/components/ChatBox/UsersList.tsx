@@ -8,7 +8,11 @@ const UsersList = ({ users }: any) => {
     <ListGroup className="users">
       {users.length > 0 ? (
         users.map((user: any) => (
-          <User name={user.name} createdAt={user.createdAt} />
+          <User
+            name={user.name}
+            createdAt={user.createdAt}
+            image={user.image}
+          />
         ))
       ) : (
         <h5 className="no-users">No Users</h5>
