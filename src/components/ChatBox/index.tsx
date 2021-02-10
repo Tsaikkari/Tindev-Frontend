@@ -1,12 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { Container, Row, Col, Card, ListGroup } from 'react-bootstrap'
 
 import SearchBarCont from './../SearchBarCont'
 import UsersList from './UsersList'
 import ChatsList from './ChatsList'
 import Message from './Message'
+import { AppState } from '../../redux/types'
 import './ChatBox.scss'
-import { users } from '../../db'
 
 export type ChatUser = {
   id: string
@@ -15,12 +16,21 @@ export type ChatUser = {
 }
 
 const ChatBox = () => {
-  const [messages, setMessages] = useState<any[]>([])
+  const [newMessage, setNewMessage] = useState('')
   const [currentUser, setCurrentUser] = useState({
     id: '',
     name: '',
     image: '',
   })
+  const role = useSelector((state: AppState) => state.user.userInfo.role)
+  const jobseekerMatch = useSelector((state: AppState) => state.jobseeker.jobseekerMatch)
+  const companyMatch = [{}] // for now
+  const jobseekersList = jobseekerMatch.map((jm: any) => ({
+    name: jm.employer.companyName,
+    image: jm.employer.image,
+  }))
+  const [users, setUsers] = useState<any[]>(jobseekersList)
+  const [messages, setMessages] = useState<any[]>([])
   const [chat, setChat] = useState({
     id: '',
     participants: [],
@@ -28,25 +38,29 @@ const ChatBox = () => {
     messages,
   })
 
-  const [newMessage, setNewMessage] = useState('')
+  const chatParticipants = chat.participants
+    .map((p: any) => users.find((u: any) => u.id === p))
+    .filter(Boolean) as ChatUser[]
 
-  const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault()
+  const message: any = {
+    id: chat.messages.find((m: any) => m.id === chat.lastMessage),
+    content: newMessage,
+    createdAt: new Date().toLocaleTimeString,
+    sender: chatParticipants.find(
+      (cp: any) => cp.id === currentUser.id || null
+    ),
+    recipient: chatParticipants.find(
+      (cp: any) => cp.id !== currentUser.id || null
+    ),
+  }
 
-    const chatParticipants = chat.participants
-      .map((p: any) => users.find((u: any) => u.id === p))
-      .filter(Boolean) as ChatUser[]
-
-    const message: any = {
-      id: chat.messages.find((m: any) => m.id === chat.lastMessage),
-      content: newMessage,
-      createdAt: new Date().toLocaleTimeString,
-      sender: chatParticipants.find(
-        (cp: any) => cp.id === currentUser.id || null
-      ),
-      recipient: chatParticipants.find(
-        (cp: any) => cp.id !== currentUser.id || null
-      ),
+  // TODO: add dependencies without browser freeze
+  useEffect(() => {
+    if (role === 'job seeker') {
+      setUsers(jobseekersList)
+    }
+    if (role === 'employer') { 
+      setUsers(companyMatch)
     }
 
     setCurrentUser({
@@ -55,13 +69,18 @@ const ChatBox = () => {
       image: currentUser.image,
     })
 
+    setMessages(messages.concat(message))
+      
     setChat({
       ...chat,
       messages: chat.messages.concat(message),
       participants: chat.participants.concat(message.sender, message.recipient),
     })
-
-    setMessages(messages.concat(message))
+  }, [])
+  
+  // TODO: add request to socket server
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
   }
 
   return (
@@ -85,8 +104,6 @@ const ChatBox = () => {
                 <ChatsList />
               </ListGroup>
               <Message
-                currentUser={currentUser}
-                setCurrentUser={setCurrentUser}
                 newMessage={newMessage}
                 setNewMessage={setNewMessage}
                 handleSubmit={handleSubmit}

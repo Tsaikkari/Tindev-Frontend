@@ -3,7 +3,7 @@ import { ListGroup } from 'react-bootstrap'
 
 import UserImage from '../UserImage'
 
-const User = ({ name, createdAt, image }: any) => {
+const User = ({ name, image }: any) => {
   return (
     <ListGroup.Item className="person" data-chat="person1">
       <div className="user">
@@ -11,7 +11,7 @@ const User = ({ name, createdAt, image }: any) => {
         <span className="status busy"></span>
         <p className="name-time">
           <span className="chat-name">{name}</span>
-          <span className="time">{createdAt}</span>
+          {/* <span className="time">{createdAt}</span> */}
         </p>
       </div>
     </ListGroup.Item>

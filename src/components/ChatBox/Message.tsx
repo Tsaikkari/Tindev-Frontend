@@ -1,24 +1,20 @@
 import React from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
 
-// TODO: currentUser from redux
 const Message = ({
   handleSubmit,
-  newMessage,
+  newMessage, 
   setNewMessage,
-  currentUser,
-  setCurrentUser,
 }: any) => {
   const handleNewMessageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     setNewMessage(value)
-    setCurrentUser(currentUser)
   }
 
   return (
     <Container>
       <div className="flex-grow-0 py-3 px-4">
-        <Form onSubmit={(e: any) => handleSubmit(e)}>
+        <Form onSubmit={e => handleSubmit(e)}>
           <Form.Group className="input-group">
             <Form.Control
               type="text"
@@ -29,11 +25,11 @@ const Message = ({
               onChange={handleNewMessageChange}
             />
           </Form.Group>
+          <Button type="submit" variant="contained" className="btn btn-primary">
+            Send
+          </Button>
         </Form>
       </div>
-      <Button variant="contained" className="btn btn-primary">
-        Send
-      </Button>
     </Container>
   )
 }

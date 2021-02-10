@@ -16,6 +16,7 @@ const Tabs = ({
   chatBoxPage,
 }: any) => {
   const role = useSelector((state: AppState) => state.user.userInfo.role)
+  
   const dispatch = useDispatch()
 
   const handleClick = () => {
@@ -28,6 +29,11 @@ const Tabs = ({
 
   const handleJobseekerMatch = () => {
     dispatch(matchJobseekerRequest())
+  }
+
+  const handleChat = () => {
+    dispatch(matchJobseekerRequest())
+    
   }
 
   return (
@@ -56,7 +62,7 @@ const Tabs = ({
                   <Nav.Link eventKey="second">Match</Nav.Link>
                 </Nav.Item>
               )}
-              <Nav.Item>
+              <Nav.Item onClick={handleChat}>
                 <Nav.Link eventKey="third">Chat</Nav.Link>
               </Nav.Item>
               {role === 'employer' && (

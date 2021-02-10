@@ -9,8 +9,8 @@ const UsersList = ({ users }: any) => {
       {users.length > 0 ? (
         users.map((user: any) => (
           <User
+            key={user.id}
             name={user.name}
-            createdAt={user.createdAt}
             image={user.image}
           />
         ))
