@@ -1,10 +1,18 @@
 import React from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
 
-const Message = ({ handleSubmit, newMessage, setNewMessage }: any) => {
+// TODO: currentUser from redux
+const Message = ({
+  handleSubmit,
+  newMessage,
+  setNewMessage,
+  currentUser,
+  setCurrentUser,
+}: any) => {
   const handleNewMessageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     setNewMessage(value)
+    setCurrentUser(currentUser)
   }
 
   return (

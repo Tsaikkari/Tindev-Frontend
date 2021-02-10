@@ -6,6 +6,7 @@ import UsersList from './UsersList'
 import ChatsList from './ChatsList'
 import Message from './Message'
 import './ChatBox.scss'
+import { users } from '../../db'
 
 export type ChatUser = {
   id: string
@@ -32,8 +33,7 @@ const ChatBox = () => {
   const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
 
-    // TODO: change to const participants when getting users from somewhere. :)))
-    const users = chat.participants
+    const chatParticipants = chat.participants
       .map((p: any) => users.find((u: any) => u.id === p))
       .filter(Boolean) as ChatUser[]
 
@@ -41,13 +41,16 @@ const ChatBox = () => {
       id: chat.messages.find((m: any) => m.id === chat.lastMessage),
       content: newMessage,
       createdAt: new Date().toLocaleTimeString,
-      sender: users.find((user: any) => user.id === currentUser.id || null),
-      recipient: users.find((user: any) => user.id !== currentUser.id || null),
+      sender: chatParticipants.find(
+        (cp: any) => cp.id === currentUser.id || null
+      ),
+      recipient: chatParticipants.find(
+        (cp: any) => cp.id !== currentUser.id || null
+      ),
     }
 
-    // TODO
     setCurrentUser({
-      id: message.sender,
+      id: currentUser.id,
       name: currentUser.name,
       image: currentUser.image,
     })
@@ -67,7 +70,7 @@ const ChatBox = () => {
         <Col sm="3" xl="4" className="col-3">
           <Card className="users-container">
             <SearchBarCont />
-            <UsersList users={chat.participants} />
+            <UsersList users={users} />
           </Card>
         </Col>
         <Col xl="8" sm="9" className="col-9">
@@ -82,6 +85,8 @@ const ChatBox = () => {
                 <ChatsList />
               </ListGroup>
               <Message
+                currentUser={currentUser}
+                setCurrentUser={setCurrentUser}
                 newMessage={newMessage}
                 setNewMessage={setNewMessage}
                 handleSubmit={handleSubmit}
