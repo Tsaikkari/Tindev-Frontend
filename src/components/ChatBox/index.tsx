@@ -16,12 +16,6 @@ export type ChatUser = {
 }
 
 const ChatBox = () => {
-  const [newMessage, setNewMessage] = useState('')
-  const [currentUser, setCurrentUser] = useState({
-    id: '',
-    name: '',
-    image: '',
-  })
   const role = useSelector((state: AppState) => state.user.userInfo.role)
   const jobseekerMatch = useSelector((state: AppState) => state.jobseeker.jobseekerMatch)
   const companyMatch = [{}] // for now
@@ -29,8 +23,32 @@ const ChatBox = () => {
     name: jm.employer.companyName,
     image: jm.employer.image,
   }))
+
+  const [currentUser, setCurrentUser] = useState({
+    id: '',
+    name: '',
+    image: '',
+  })
   const [users, setUsers] = useState<any[]>(jobseekersList)
+
+  // TODO: add dependencies without browser freeze
+  useEffect(() => {
+    if (role === 'job seeker') {
+      setUsers(jobseekersList)
+    }
+    if (role === 'employer') { 
+      setUsers(companyMatch)
+    }
+
+    setCurrentUser({
+      id: currentUser.id,
+      name: currentUser.name,
+      image: currentUser.image,
+    })
+  }, [])
+
   const [messages, setMessages] = useState<any[]>([])
+  const [newMessage, setNewMessage] = useState('')
   const [chat, setChat] = useState({
     id: '',
     participants: [],
@@ -53,34 +71,20 @@ const ChatBox = () => {
       (cp: any) => cp.id !== currentUser.id || null
     ),
   }
-
-  // TODO: add dependencies without browser freeze
-  useEffect(() => {
-    if (role === 'job seeker') {
-      setUsers(jobseekersList)
-    }
-    if (role === 'employer') { 
-      setUsers(companyMatch)
-    }
-
-    setCurrentUser({
-      id: currentUser.id,
-      name: currentUser.name,
-      image: currentUser.image,
-    })
-
-    setMessages(messages.concat(message))
-      
-    setChat({
-      ...chat,
-      messages: chat.messages.concat(message),
-      participants: chat.participants.concat(message.sender, message.recipient),
-    })
-  }, [])
   
   // TODO: add request to socket server
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
+    setMessages([
+      ...messages,
+      { message }
+    ])
+
+    setChat({
+      ...chat,
+      messages: chat.messages.concat(message),
+      participants: chat.participants.concat(message.sender, message.recipient)
+    })
   }
 
   return (

@@ -17,12 +17,13 @@ const Message = ({
         <Form onSubmit={e => handleSubmit(e)}>
           <Form.Group className="input-group">
             <Form.Control
-              type="text"
+              as="textarea"
               name="newMessage"
               value={newMessage}
               className="form-control"
               placeholder="Write message..."
               onChange={handleNewMessageChange}
+              rows={3}
             />
           </Form.Group>
           <Button type="submit" variant="contained" className="btn btn-primary">
