@@ -1,22 +1,28 @@
 import React from 'react'
-import { ListGroup } from 'react-bootstrap'
-import { Image } from 'react-bootstrap'
+import { Button } from 'react-bootstrap'
+import moment from 'moment'
 
-const Outgoing = () => {
+import UserImage from '../UserImage'
+
+const Outgoing = ({ messages, removeMessage, currentUser, name, image }: any) => {
   return (
-    <ListGroup className="chat-left">
-      <div className="chat-avatar">
-        <Image
-          src="https://www.bootdey.com/img/Content/avatar/avatar3.png"
-          alt="avatar"
-        />
-        <ListGroup.Item className="chat-name"></ListGroup.Item>
-      </div>
-      <ListGroup.Item className="chat-text"></ListGroup.Item>
-      <ListGroup.Item className="chat-hour">
-        <span className="fa fa-check-circle"></span>
-      </ListGroup.Item>
-    </ListGroup>
+    <>
+      {messages && currentUser && messages.map((m: any) => {
+        return (
+          <div className="chat-left" key={m.id}>
+            <div className="chat-avatar">
+              <UserImage image={image} />
+              <div className="chat-name">{name}</div>
+            </div>
+            <div className="chat-text">{m.content}</div>
+            <div className="chat-hour">
+              <span className="fa fa-check-circle">{moment(m.createdAt).format('HH:mm')}</span>
+            </div>
+            <Button onClick={() => removeMessage(m.id)}>x</Button>
+          </div>
+        )
+      })}
+    </>
   )
 }
 export default Outgoing

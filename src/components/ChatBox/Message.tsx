@@ -3,12 +3,15 @@ import { Container, Form, Button } from 'react-bootstrap'
 
 const Message = ({
   handleSubmit,
-  newMessage, 
-  setNewMessage,
+  content,
+  setContent
+  // newMessage, 
+  // setNewMessage,
 }: any) => {
   const handleNewMessageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
-    setNewMessage(value)
+    // setNewMessage(value)
+    setContent(value)
   }
 
   return (
@@ -19,7 +22,7 @@ const Message = ({
             <Form.Control
               as="textarea"
               name="newMessage"
-              value={newMessage}
+              value={content}
               className="form-control"
               placeholder="Write message..."
               onChange={handleNewMessageChange}
