@@ -128,7 +128,7 @@ const ChatBox = () => {
     // setRecipient('')
     // setCurrentUser(false)
 
-    socket.emit('Input message', {
+    socket.emit('new message', {
       content,
       userId,
       name,
