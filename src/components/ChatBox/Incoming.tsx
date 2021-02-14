@@ -5,6 +5,7 @@ import moment from 'moment'
 import UserImage from '../UserImage'
 
 const Incoming = ({ messages, removeMessage, image, name, currentUser }: any) => {
+  
   return (
     <>
       {!currentUser && messages && messages.map((m: any) => {

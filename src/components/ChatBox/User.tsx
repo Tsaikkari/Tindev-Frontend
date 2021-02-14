@@ -12,7 +12,7 @@ const chatsRecuder = (state: any, action: any) => {
         ...state,
         {
           id: action.id,
-          participants: action.participants,
+          participants: action.participants, // TODO
           //lastMessage: action.lastMessage,
           messages: action.messages,
         }

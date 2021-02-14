@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useReducer } from 'react'
 import { useSelector } from 'react-redux'
 import { Container, Row, Col, Card, ListGroup } from 'react-bootstrap'
+import io from 'socket.io-client'
 
 import SearchBarCont from './../SearchBarCont'
 import UsersList from './UsersList'
 import Outgoing from './Outgoing'
 import Incoming from './Incoming'
-import Message from './Message'
+import CreateMessage from './CreateMessage'
 import { AppState } from '../../redux/types'
 import './ChatBox.scss'
 
@@ -30,8 +31,9 @@ const messagesReducer = (state: any, action: any) => {
           id: action.id,
           content: action.content,
           createdAt: action.createdAt,
-          sender: action.sender, // TODO: currentUser
-          recipient: action.recipient,
+          sender: action.sender, // TODO
+          recipient: action.recipient, // TODO
+          currentUser: action.currentUser, // TODO
         },
       ]
     case 'REMOVE_MESSAGE':
@@ -41,6 +43,9 @@ const messagesReducer = (state: any, action: any) => {
   }
 }
 
+const server = 'http://localhost:5000'
+const socket = io(server)
+
 export type ChatUser = {
   id: string
   name: string
@@ -48,10 +53,12 @@ export type ChatUser = {
 }
 
 const ChatBox = () => {
-  const role = useSelector((state: AppState) => state.user.userInfo.role)
+  const user = useSelector((state: AppState) => state.user.userInfo)
   const jobseekerMatch = useSelector(
     (state: AppState) => state.jobseeker.jobseekerMatch
   )
+  const jobseeker = useSelector((state: AppState) => state.jobseeker)
+  const employer = useSelector((state: AppState) => state.employer)
   const companyMatch = [{}] // for now
   const jobseekersList = jobseekerMatch.map((jm: any) => ({
     name: jm.employer.companyName,
@@ -60,23 +67,29 @@ const ChatBox = () => {
 
   const [users, usersDispatch] = useReducer(usersReducer, [])
   const [currentUser, setCurrentUser] = useState(true)
+  
+  // const [sender, setSender] = useState('')
+  // const [recipient, setRecipient] = useState('')
+  const [messages, messagesDispatch] = useReducer(messagesReducer, [])
   const [name, setName] = useState('')
   const [image, setImage] = useState('')
   const [content, setContent] = useState('')
   const [createdAt, setCreatedAt] = useState('')
-  const [sender, setSender] = useState('')
-  const [recipient, setRecipient] = useState('')
-  const [messages, messagesDispatch] = useReducer(messagesReducer, [])
 
   // TODO: list should render without having to restart
   useEffect(() => {
-    if (users && role === 'job seeker') {
+    if (users && user.role === 'job seeker') {
       usersDispatch({ type: 'ADD_USERS', users: jobseekersList })
     }
-    if (users && role === 'employer') {
+    if (users && user.role === 'employer') {
       usersDispatch({ type: 'ADD_USERS', users: companyMatch })
     }
   }, [])
+
+  // useEffect(() => {
+  //   const server = 'http://localhost:5000'
+  //   const socket = io(server)
+  // })
 
   useEffect(() => {
     const messages = ['from socket server']
@@ -88,23 +101,40 @@ const ChatBox = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
 
+    let userId = user.id
+
+    if (user.role === 'job seeker') {
+      setName(jobseeker.firstName + ' ' + jobseeker.lastName)
+      setImage(jobseeker.image)
+    } 
+    if (user.role === 'employer' && jobseekerMatch.includes(employer.companyName)) {
+      setName(employer.companyName)
+      setImage(employer.image)
+    }
+
+    setCreatedAt(createdAt)
+
     messagesDispatch({
       type: 'ADD_MESSAGE',
-      name,
-      image,
       content,
       createdAt,
-      sender,
-      recipient,
-      currentUser,
+      // sender,
+      // recipient,
+      // currentUser,
     })
-    setName('')
-    setImage('')
     setContent('')
-    setCreatedAt('')
-    setSender('')
-    setRecipient('')
-    setCurrentUser(false)
+    //setCreatedAt('')
+    // setSender('')
+    // setRecipient('')
+    // setCurrentUser(false)
+
+    socket.emit('Input message', {
+      content,
+      userId,
+      name,
+      image,
+      createdAt
+    })
   }
 
   const removeMessage = (id: string) => {
@@ -132,22 +162,22 @@ const ChatBox = () => {
             </Card.Header>
             <Card.Body className="chat-container chat-messages">
               <ListGroup className="chat-box border-top">
-                <Outgoing
-                  currentUser={currentUser}
+                  return <Outgoing
+                  // currentUser={currentUser}
                   name={name}
                   image={image}
                   messages={messages}
                   removeMessage={removeMessage}
                 />
-                <Incoming
-                  currentUser={currentUser}
+                  <Incoming
+                  // currentUser={currentUser}
                   name={name}
                   image={image}
                   messages={messages}
                   removeMessage={removeMessage}
                 />
               </ListGroup>
-              <Message
+                return <CreateMessage
                 image={image}
                 content={content}
                 setContent={setContent}

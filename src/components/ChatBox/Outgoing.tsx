@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from 'react-bootstrap'
 import moment from 'moment'
 
 import UserImage from '../UserImage'
 
 const Outgoing = ({ messages, removeMessage, currentUser, name, image }: any) => {
+  const [userName, setName] = useState(name)
+  const [userImage, setImage] = useState(image)
+  const [createdAt, setCreatedAt] = useState('')
   return (
     <>
       {messages && currentUser && messages.map((m: any) => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container, Form, Button } from 'react-bootstrap'
 
-const Message = ({
+const CreateMessage = ({
   handleSubmit,
   content,
   setContent
@@ -21,7 +21,7 @@ const Message = ({
           <Form.Group className="input-group">
             <Form.Control
               as="textarea"
-              name="newMessage"
+              name="content"
               value={content}
               className="form-control"
               placeholder="Write message..."
@@ -38,4 +38,4 @@ const Message = ({
   )
 }
 
-export default Message
+export default CreateMessage
